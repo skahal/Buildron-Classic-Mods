@@ -26,8 +26,7 @@ namespace Buildron.ClassicMods.BuildMod.Application
 		/// </summary>
 		/// <param name="factory">Factory.</param>
 		/// <param name="log">Log.</param>
-		public BuildGOService(BuildController.Factory factory, ISHLogStrategy log) 
-            : base (factory)
+		public BuildGOService(ISHLogStrategy log)             
         {
 			m_log = log;
         }
@@ -175,6 +174,7 @@ namespace Buildron.ClassicMods.BuildMod.Application
 			{
                 var prefab = Mod.Context.Assets.Load("BuildPrefab");
                 go = Mod.Context.GameObjects.Create(prefab);
+                Mod.DI.Container.InjectGameObject(go, true);
                 var controller = go.GetComponent<BuildController>();
                 controller.Model = model;
 				go.name = GetName(model);

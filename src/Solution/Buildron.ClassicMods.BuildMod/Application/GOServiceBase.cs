@@ -15,17 +15,6 @@ namespace Buildron.ClassicMods.BuildMod.Application
     public abstract class GOServiceBase<TModel, TController>  
 		where TController : class, ISHController<TModel>
     {
-        #region Constructors
-        protected GOServiceBase (IFactory<TController> factory)
-        {
-            Factory = factory;
-        }
-        #endregion
-
-        #region Properties
-        protected IFactory<TController> Factory { get; private set; }
-        #endregion
-
         #region Methods
         protected abstract string GetName(TModel model);
 
@@ -39,20 +28,7 @@ namespace Buildron.ClassicMods.BuildMod.Application
             return GetGameObject(model) != null;
         }
 
-        public virtual GameObject CreateGameObject(TModel model)
-        {
-            var go = GetGameObject(model);
-
-            if (go == null)
-            {
-				var controller = Factory.Create ();
-                controller.Model = model;
-				go = controller.gameObject;
-                go.name = GetName(model);
-            }
-
-            return go;
-        }
+        public abstract GameObject CreateGameObject(TModel model);     
         #endregion
     }
 }

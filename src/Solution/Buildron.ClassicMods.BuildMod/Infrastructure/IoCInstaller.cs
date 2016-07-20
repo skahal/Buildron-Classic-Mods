@@ -15,9 +15,9 @@ namespace Buildron.ClassicMods.BuildMod.Infrastructure
 			//
 
 			Container.Bind<BuildGOService> ().AsSingle ();
-			Container.BindFactory<BuildController, BuildController.Factory> ()
-				.FromPrefabResource ("BuildPrefab")
-				.UnderGameObjectGroup ("Builds");            
+			//Container.BindFactory<BuildController, BuildController.Factory> ()
+			//	.FromPrefabResource ("BuildPrefab")
+			//	.UnderGameObjectGroup ("Builds");            
 		}
 	}
 }

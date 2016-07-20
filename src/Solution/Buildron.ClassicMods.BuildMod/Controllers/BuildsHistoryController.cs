@@ -38,9 +38,17 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 			Messenger.Register (
 				gameObject,
 				"OnBuildSuccess",
-				"OnBuildFailed",
-				"OnCIServerReady"
+				"OnBuildFailed"				
 			);
+
+            Mod.Context.CIServerConnected += (s, e) =>
+            {
+                // TODO: should come from some mod configuration screen.
+                if (!e.Server.HistoryTotemEnabled) {
+                	enabled = false;
+                	Destroy(this);	
+                }
+            };
 		}
 
 		private void OnBuildSuccess (GameObject buildGO)
@@ -51,16 +59,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		private void OnBuildFailed (GameObject buildGO)
 		{
 			CreateHistoryBuild (buildGO);
-		}
-
-		private void OnCIServerReady ()
-		{
-			// TODO: should come from some mod configuration screen.
-			//if (!m_ciServerService.GetCIServer ().HistoryTotemEnabled) {
-//			enabled = false;
-//			Destroy(this);	
-			//}
-		}
+		}	
 
 		private void CreateHistoryBuild (GameObject buildGO)
 		{

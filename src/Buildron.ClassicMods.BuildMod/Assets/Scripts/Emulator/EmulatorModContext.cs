@@ -88,6 +88,16 @@ public class EmulatorModContext : MonoBehaviour, IModContext {
 			Log.Debug ("BuildFound: {0}; {1}", build.Id, build.Status);
 			BuildFound.Raise (this, new BuildFoundEventArgs (build));
 		}
-	}
+
+        if (GUILayout.Button("BuildRemoved"))
+        {
+			if (Builds.Count > 0) {
+				var build = Builds [0];
+				Builds.RemoveAt (0);
+				Log.Debug ("BuildRemoved: {0}; {1}", build.Id, build.Status);
+				BuildRemoved.Raise (this, new BuildRemovedEventArgs (build));
+			}
+        }
+    }
 	#endregion
 }

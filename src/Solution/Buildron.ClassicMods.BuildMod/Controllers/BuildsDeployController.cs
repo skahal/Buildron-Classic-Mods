@@ -16,7 +16,6 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 	public class BuildsDeployController : MonoBehaviour
 	{
 		#region Fields
-
 		private GameObject m_container;
 		private Vector3 m_initialDeployPosition;
 		private Vector3 m_currentDeployPosition;
@@ -24,16 +23,13 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		private int m_currentTotemIndex;
 		private Queue<GameObject> m_buildsToDeploy = new Queue<GameObject> ();
 		public int m_totemsNumber = 2;
-
 		#endregion
 
 		#region Editor properties
-
 		public Vector3 DeployCenterPosition = new Vector3 (-0.5f, 20, 1.5f);
 		public float DeployInterval = 0.4f;
 		public float TotemsDistance = 13;
 		public Text BuildsCountLabel;
-
 		#endregion
 
 		#region Properties
@@ -70,10 +66,10 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 
 		private void CIServerConnected (object sender, CIServerConnectedEventArgs e)
 		{
-			Mod.Context.Log.Debug ("CIServerConnected");
+			Mod.Context.Log.Debug ("CIServerConnected.");
 				
 			// TODO: should come from some mod configuration screen.
-			m_totemsNumber = 1;// m_ciServerService.GetCIServer ().BuildsTotemsNumber;
+			m_totemsNumber = Mod.Context.CIServer.BuildsTotemsNumber;
 
 			m_initialDeployPosition = CalculateInitialPosition ();
 			m_currentDeployPosition = m_initialDeployPosition;
@@ -105,8 +101,13 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 				go.transform.parent = m_container.transform;						
 			}
 
-			m_currentDeployPosition.x = m_initialDeployPosition.x + (m_currentTotemIndex * TotemsDistance);
-			go.transform.position = m_currentDeployPosition;
+            if (float.IsNaN(m_initialDeployPosition.x))
+            {
+                m_initialDeployPosition.x = 0;
+            }
+
+            m_currentDeployPosition.x = m_initialDeployPosition.x + (m_currentTotemIndex * TotemsDistance);
+            go.transform.position = m_currentDeployPosition;
 			go.SetActive (false);
 			m_buildsToDeploy.Enqueue (go);
 

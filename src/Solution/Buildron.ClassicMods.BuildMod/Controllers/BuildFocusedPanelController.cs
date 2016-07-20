@@ -4,30 +4,27 @@ using UnityEngine.UI;
 using Skahal.Tweening;
 using Zenject;
 using Buildron.ClassicMods.BuildMod.Application;
+using Buildron.Domain.Builds;
+using Skahal.Threading;
 
 namespace Buildron.ClassicMods.BuildMod.Controllers
 {
 	public class BuildFocusedPanelController : MonoBehaviour
 	{
 		#region Fields
-
 		private BuildController m_buildController;
 		private bool m_isVisible;
 		private Text m_text;
-
 		#endregion
 
 		#region  Properties
-
 		public float YHeight = 1f;
 
 		[Inject]
 		public BuildGOService Service { get; set; }
-
 		#endregion
 
 		#region Life cycle
-
 		private void Start ()
 		{
 			m_buildController = transform.parent.GetComponent<BuildController> ();
@@ -36,27 +33,10 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 				GameObject.Destroy (gameObject);
 			} else {	
 				m_text = GetComponentInChildren<Text> ();
-				Messenger.Register (gameObject, "OnBuildHidden", "OnBuildVisible");
-				m_isVisible = true;
-				Hide ();
 			}
 		}
 
-		private void OnBuildHidden ()
-		{
-			if (Service.CountVisibles () == 1 && m_buildController.IsVisible) {
-				Show ();
-			} else {
-				Hide ();
-			}
-		}
-
-		private void OnBuildVisible ()
-		{
-			OnBuildHidden ();
-		}
-
-		private void Show ()
+		public void Show ()
 		{
 			var date = m_buildController.Model.Date;
 			var focusedText = m_buildController.Model.LastChangeDescription;
@@ -80,7 +60,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 			}
 		}
 
-		private void Hide ()
+		public void Hide ()
 		{
 			if (m_isVisible) {
 				if (m_buildController.IsVisible) {

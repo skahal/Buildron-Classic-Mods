@@ -15,6 +15,8 @@ namespace Buildron.ClassicMods.BuildMod
 		}
 
 		public static IModContext Context { get; private set; }
+        public static SceneContext DI { get; private set; }
+
 
 		#region Methods
 		public void Initialize (IModContext context)
@@ -32,11 +34,27 @@ namespace Buildron.ClassicMods.BuildMod
                 throw new InvalidOperationException("SceneContext not found.");
             }
 
+            DI = sceneContext;
 
-            var c = context.GameObjects.Create<BuildsDeployController>();
-            context.Log.Debug ("Injecting: {0}", c);            
-            sceneContext.Container.Inject(c);
-		}
+            CreateController("BuildsDeployController");            
+            CreateController("BuildHistoryController"); 
+			CreateController("BuildsController"); 
+        }
+
+        private void CreateController(string prefabName)
+        {
+            var prefab = Context.Assets.Load(prefabName);
+            var go = Context.GameObjects.Create(prefab);
+            DI.Container.InjectGameObject(go, true);
+        }
+
+        private void CreateController<TController>()
+            where TController : MonoBehaviour
+        {
+            Context.Log.Debug("Creating controller: {0}", typeof(TController).Name);
+            var c = Context.GameObjects.Create<TController>();            
+            DI.Container.Inject(c);
+        }
 		#endregion
 	}
 }

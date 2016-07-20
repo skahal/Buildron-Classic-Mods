@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 using Buildron.ClassicMods.BuildMod.Application;
+using Skahal.Threading;
 
 namespace Buildron.ClassicMods.BuildMod.Controllers
 {
@@ -17,14 +18,28 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		#region Methods
 	    void Start()
 	    {
-	        Messenger.Register(gameObject,
-	            "OnBuildHidden");
+			Mod.Context.BuildFound += delegate { HandleVisibleBuilds(); };
+
+			Mod.Context.BuildRemoved += delegate {
+				m_buildGOService.WakeUpSleepingBuilds();
+				HandleVisibleBuilds();
+			};
 	    }
 
-	    void OnBuildHidden()
-	    {
-	        m_buildGOService.WakeUpSleepingBuilds();
-	    }
+		private void HandleVisibleBuilds ()
+		{
+			SHCoroutine.Start(1f, () => {
+				var builds = m_buildGOService.GetVisibles ();
+
+				if (builds.Count == 1) {
+					builds [0].GetComponentInChildren<BuildFocusedPanelController> ().Show ();
+				} else {
+					foreach (var b in builds) {
+						b.GetComponentInChildren<BuildFocusedPanelController> ().Hide ();
+					}
+				}
+			});
+		}
 		#endregion
 	}
 }

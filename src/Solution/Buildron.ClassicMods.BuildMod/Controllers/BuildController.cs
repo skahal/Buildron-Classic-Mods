@@ -1,29 +1,21 @@
 using System;
-using Buildron.Domain;
 using Buildron.Domain.Builds;
 using Skahal;
 using Skahal.Camera;
 using Skahal.Logging;
 using UnityEngine;
 using UnityEngine.UI;
-using Buildron.Domain.Users;
-using Buildron.Domain.RemoteControls;
-using Buildron.ClassicMods.BuildMod;
 using Zenject;
-using Buildron.ClassicMods.BuildMod.Controllers;
-using System.Collections.Generic;
-using Skahal.Common;
 using System.Linq;
 
 namespace Buildron.ClassicMods.BuildMod.Controllers
 {
-	/// <summary>
-	/// Build controller.
-	/// </summary>
-	public class BuildController : MonoBehaviour, ISHController<IBuild>
+    /// <summary>
+    /// Build controller.
+    /// </summary>
+    public class BuildController : MonoBehaviour, ISHController<IBuild>
 	{
 		#region Fields
-
 		private static UnityEngine.Object s_buildFailedExplosionPrefab;
 		private static UnityEngine.Object s_buildSuccessFireworksPrefab;
 		private static UnityEngine.Object s_buildHidingEffectPrefab;
@@ -40,11 +32,9 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		private bool m_isFirstCheckState = true;
 		private BuildStatus m_lastCheckStateStatus;
 		private GameObject m_focusedPanel;
-
 		#endregion
 
 		#region Properties
-
 		public bool IsHistoryBuild { get; set; }
 
 		public bool IsVisible { get; private set; }
@@ -304,6 +294,8 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 				m_progressBar.Hide ();
 				HasReachGround = false;
 				m_groundReachdAlreadRaised = false;
+				m_focusedPanel.SetActive (false);
+
 				Messenger.Send ("OnBuildHidden");
 			}
 		}
@@ -326,6 +318,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 				UpdateUserAvatar ();
 				m_projectLabel.enabled = true;
 				m_configurationLabel.enabled = true;
+				m_focusedPanel.SetActive (true);
 
 				if (Model.IsRunning()) {
 					m_runningStatusIcon.enabled = true;
@@ -378,12 +371,5 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		}
 
 		#endregion
-
-		/// <summary>
-		/// The build controller factory.
-		/// </summary>
-		public class Factory : Factory<BuildController>
-		{
-		}
 	}
 }
