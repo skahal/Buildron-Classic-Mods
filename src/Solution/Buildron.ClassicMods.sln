@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buildron.ClassicMods.BuildMod", "Buildron.ClassicMods.BuildMod\Buildron.ClassicMods.BuildMod.csproj", "{992184C1-B5EA-491F-82BC-79D983373EE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject", "Zenject\Zenject.csproj", "{AE971983-D03C-4B72-8E92-B7516BF770F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{992184C1-B5EA-491F-82BC-79D983373EE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{992184C1-B5EA-491F-82BC-79D983373EE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{992184C1-B5EA-491F-82BC-79D983373EE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{992184C1-B5EA-491F-82BC-79D983373EE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE971983-D03C-4B72-8E92-B7516BF770F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE971983-D03C-4B72-8E92-B7516BF770F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE971983-D03C-4B72-8E92-B7516BF770F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE971983-D03C-4B72-8E92-B7516BF770F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
