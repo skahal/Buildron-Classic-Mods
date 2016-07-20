@@ -5,7 +5,6 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 {
 	public class BuildProgressBarController : MonoBehaviour
 	{
-
 		private Renderer m_renderer;
 
 		private void Awake ()

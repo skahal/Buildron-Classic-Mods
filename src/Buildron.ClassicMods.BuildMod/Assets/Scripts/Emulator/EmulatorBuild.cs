@@ -2,6 +2,8 @@
 using Buildron.Domain.Builds;
 using Buildron.Domain.Users;
 using Skahal.Common;
+using Skahal.Threading;
+using UnityEngine;
 
 public class EmulatorBuild : IBuild
 {
@@ -21,6 +23,10 @@ public class EmulatorBuild : IBuild
 		LastRanStep = new EmulatorBuildStep {
 			StepType = SHRandomHelper.NextEnum<BuildStepType> ()
 		};
+
+		if(this.IsRunning()) {
+			PercentageComplete = UnityEngine.Random.Range(0f, 1f);
+		}
 	}
 	#endregion
 
