@@ -62,6 +62,21 @@
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
+ <Reference Include="Buildron.ClassicMods.BuildMod">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Buildron.ClassicMods.BuildMod.dll</HintPath>
+ </Reference>
+ <Reference Include="Buildron.ModSdk">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Buildron.ModSdk.dll</HintPath>
+ </Reference>
+ <Reference Include="Skahal.Unity.Scripts">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Skahal.Unity.Scripts.dll</HintPath>
+ </Reference>
+ <Reference Include="Skahal.Unity.Scripts.Externals">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Skahal.Unity.Scripts.Externals.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Zenject.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
