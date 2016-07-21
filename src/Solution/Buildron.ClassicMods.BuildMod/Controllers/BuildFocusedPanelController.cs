@@ -1,15 +1,12 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using Skahal.Tweening;
 using Zenject;
 using Buildron.ClassicMods.BuildMod.Application;
-using Buildron.Domain.Builds;
-using Skahal.Threading;
 
 namespace Buildron.ClassicMods.BuildMod.Controllers
 {
-	public class BuildFocusedPanelController : MonoBehaviour
+    public class BuildFocusedPanelController : MonoBehaviour
 	{
 		#region Fields
 		private BuildController m_buildController;

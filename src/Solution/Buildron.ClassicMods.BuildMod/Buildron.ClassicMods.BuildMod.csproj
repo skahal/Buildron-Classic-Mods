@@ -62,7 +62,6 @@
     <Compile Include="Controllers\BuildsController.cs" />
     <Compile Include="Controllers\BuildsDeployController.cs" />
     <Compile Include="Controllers\BuildsHistoryController.cs" />
-    <Compile Include="Controllers\BuildSoundEffectController.cs" />
     <Compile Include="Infrastructure\IoCInstaller.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

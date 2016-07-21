@@ -156,6 +156,8 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 					UpdateUserAvatar ();
 				}
 			};
+
+			Messenger.Send ("OnBuildStarted", Model);
 		}
 
 		private void MonitorTriggeredByPhotoUpdated ()

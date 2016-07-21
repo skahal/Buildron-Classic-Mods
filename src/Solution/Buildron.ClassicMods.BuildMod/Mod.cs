@@ -17,7 +17,6 @@ namespace Buildron.ClassicMods.BuildMod
 		public static IModContext Context { get; private set; }
         public static SceneContext DI { get; private set; }
 
-
 		#region Methods
 		public void Initialize (IModContext context)
 		{

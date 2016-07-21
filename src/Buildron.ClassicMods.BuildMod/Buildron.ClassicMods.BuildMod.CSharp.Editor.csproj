@@ -112,9 +112,6 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Buildron.ClassicMods.BuildMod">
-      <HintPath>Assets\Scripts\references\Buildron.ClassicMods.BuildMod.dll</HintPath>
-    </Reference>
     <Reference Include="Buildron.ModSdk">
       <HintPath>Assets\Scripts\references\Buildron.ModSdk.dll</HintPath>
     </Reference>
