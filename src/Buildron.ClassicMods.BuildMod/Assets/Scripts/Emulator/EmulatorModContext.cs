@@ -10,7 +10,7 @@ using Skahal.Logging;
 using Buildron.Infrastructure.AssetsProxies;
 using Buildron.Infrastructure.GameObjectsProxies;
 using Skahal.Common;
-using Buildron.ClassicMods.BuildMod; 
+using System.Linq;
 
 public class EmulatorModContext : MonoBehaviour, IModContext {
 
@@ -61,16 +61,24 @@ public class EmulatorModContext : MonoBehaviour, IModContext {
 	#endregion
 
 	#region Methods
-	private void Awake()
+	private void Start()
 	{
 		Builds = new List<IBuild> ();
 		Users = new List<IUser> ();
-		CIServer = new EmulatorCIServer ();
+		CIServer = EmulatorCIServer.Instance;
 		Log = new SHDebugLogStrategy ();
 		Assets = new ResourcesFolderAssetsProxy ();
 		GameObjects = new ModGameObjectsProxy ();
 
-		var mod = new Mod ();
+        var modInterfaceType = typeof(IMod);
+		var modType = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).FirstOrDefault(t => !t.IsAbstract && modInterfaceType.IsAssignableFrom(t));
+
+        if (modType == null)
+        {
+            throw new InvalidOperationException("IMod interface implementation not found");
+        }
+
+		var mod = Activator.CreateInstance (modType) as IMod;
 		mod.Initialize (this);
 	}
 

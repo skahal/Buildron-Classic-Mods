@@ -2,8 +2,6 @@
 using Buildron.Domain.Builds;
 using Buildron.Domain.Users;
 using Skahal.Common;
-using Skahal.Threading;
-using UnityEngine;
 
 public class EmulatorBuild : IBuild
 {
@@ -18,6 +16,7 @@ public class EmulatorBuild : IBuild
 		Configuration = new EmulatorBuildConfiguration{
 			Name = "Build #{0} ".With(Id)
 		};
+		Date = DateTime.Now;
 
 		Status = SHRandomHelper.NextEnum<BuildStatus> ();
 		LastRanStep = new EmulatorBuildStep {
@@ -31,7 +30,6 @@ public class EmulatorBuild : IBuild
 	#endregion
 
 	#region IBuild implementation
-
 	public event EventHandler<BuildStatusChangedEventArgs> StatusChanged;
 
 	public event EventHandler<BuildTriggeredByChangedEventArgs> TriggeredByChanged;
@@ -62,7 +60,7 @@ public class EmulatorBuild : IBuild
 
 	public object Clone ()
 	{
-		throw new NotImplementedException ();
+        return MemberwiseClone();
 	}
 
 	#endregion
