@@ -21,16 +21,12 @@ namespace Buildron.ClassicMods.SoundMod.Controllers
             {
                 LoadSounds();
 
-                Mod.Context.BuildStatusChanged += (sender, e) => {
-                    var build = e.Build;
+				Mod.Context.BuildFound += (sender, e) => {
+					PlayAudio(e.Build);
+				};
 
-                    if (build.IsFailed()
-                    || build.IsQueued()
-                    || build.IsSuccess()
-                    || build.Status == BuildStatus.Running) // Just first running status.
-                    {
-                        PlayAudio(build);
-                    }
+                Mod.Context.BuildStatusChanged += (sender, e) => {
+					PlayAudio(e.Build);
                 };
                 
             }
@@ -50,6 +46,8 @@ namespace Buildron.ClassicMods.SoundMod.Controllers
 
         private IEnumerator LoadSound()
         {
+			// TODO: create IOProxy.
+			// 
             var folderPath = UnityEngine.Application.dataPath.Substring(0, UnityEngine.Application.dataPath.LastIndexOf("/")) + "/mods/sounds/current/";
             folderPath = FixPath(folderPath);
             var soundFiles = Directory.GetFiles(folderPath, "*.wav", SearchOption.AllDirectories);
@@ -76,9 +74,14 @@ namespace Buildron.ClassicMods.SoundMod.Controllers
             return path.Replace(@"\", "/");
         }   
 
+
         private void PlayAudio(IBuild build)
-        {
-            if (build.TriggeredBy != null)
+		{  
+			if ((build.IsFailed()
+			|| build.IsQueued()
+			|| build.IsSuccess()
+			|| build.Status == BuildStatus.Running) // Just first running status.
+			&& build.TriggeredBy != null)
             {
                 var username = build.TriggeredBy.UserName;
                 var status = build.Status;
