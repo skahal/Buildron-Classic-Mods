@@ -27,7 +27,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		#region Methods
 		private void Start ()
 		{
-			m_container = new GameObject ("History");
+			m_container = Mod.Context.GameObjects.Create ("History");
 		
             Mod.Context.CIServerConnected += (s, e) =>
             {

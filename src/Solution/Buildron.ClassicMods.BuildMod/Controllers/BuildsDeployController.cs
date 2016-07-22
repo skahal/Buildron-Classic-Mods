@@ -59,7 +59,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		private void Awake ()
 		{
 			Instance = this;
-			m_container = new GameObject ("Builds");
+			m_container = Mod.Context.GameObjects.Create("Builds");
 	
 			Mod.Context.CIServerConnected += CIServerConnected;
 		}

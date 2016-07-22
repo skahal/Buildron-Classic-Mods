@@ -50,6 +50,8 @@
      <Compile Include="Assets\Scripts\Emulator\EmulatorBuildProject.cs" />
      <Compile Include="Assets\Scripts\Emulator\EmulatorBuildStep.cs" />
      <Compile Include="Assets\Scripts\Emulator\EmulatorCIServer.cs" />
+     <Compile Include="Assets\Scripts\Emulator\EmulatorFileSystemProxy.cs" />
+     <Compile Include="Assets\Scripts\Emulator\EmulatorGameObjectsPoolProxy.cs" />
      <Compile Include="Assets\Scripts\Emulator\EmulatorModContext.cs" />
      <Compile Include="Assets\Scripts\Emulator\ModGameObjectsProxy.cs" />
      <Compile Include="Assets\Scripts\Emulator\ResourcesFolderAssetsProxy.cs" />
