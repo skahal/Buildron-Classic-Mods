@@ -1,34 +1,32 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Buildron.Domain.Builds;
+using Buildron.Domain.Mods;
 
 namespace Buildron.ClassicMods.SoundMod.Controllers
 {
-    [RequireComponent(typeof(AudioSource))]
     public class BuildSoundEffectController : MonoBehaviour
     {
         #region Fields
-        private static List<AudioClip> s_sounds = new List<AudioClip>();
+        private static readonly List<AudioClip> s_sounds = new List<AudioClip>();
+		private IModContext m_ctx;
         #endregion
 
         #region Methods
         private void Start()
         {
-            if (Mod.Context.CIServer.FxSoundsEnabled)
+			m_ctx = Mod.Context;
+
+			if (m_ctx.CIServer.FxSoundsEnabled)
             {
                 LoadSounds();
-
-				Mod.Context.BuildFound += (sender, e) => {
-					PlayAudio(e.Build);
-				};
-
-                Mod.Context.BuildStatusChanged += (sender, e) => {
-					PlayAudio(e.Build);
-                };
-                
+				m_ctx.GameObjectsPool.CreatePool ("AudioSource", () => {
+					return m_ctx.GameObjects.Create<AudioSource>().gameObject;
+				});
+				m_ctx.BuildFound += (sender, e) => PlayAudio(e.Build);
+				m_ctx.BuildStatusChanged += (sender, e) => PlayAudio(e.Build);                
             }
             else
             {
@@ -46,34 +44,23 @@ namespace Buildron.ClassicMods.SoundMod.Controllers
 
         private IEnumerator LoadSound()
         {
-			// TODO: create IOProxy.
-			// 
-            var folderPath = UnityEngine.Application.dataPath.Substring(0, UnityEngine.Application.dataPath.LastIndexOf("/")) + "/mods/sounds/current/";
-            folderPath = FixPath(folderPath);
-            var soundFiles = Directory.GetFiles(folderPath, "*.wav", SearchOption.AllDirectories);
-
-            Mod.Context.Log.Debug("Found {0} sound files on folder {1} and subfolders.", soundFiles.Length, folderPath);
+			var soundFiles = m_ctx.FileSystem.SearchFiles("*.wav");
+			m_ctx.Log.Debug("Found {0} sound files on folder mod folder and subfolders.", soundFiles.Length);
 
             foreach (var file in soundFiles)
             {
                 var filename = "file://" + file;
-                filename = FixPath(filename);
+                filename = filename.Replace(@"\", "/");
 
                 var www = new WWW(filename);
                 yield return www;
                 var clip = www.GetAudioClip(true);
                 clip.name = filename;
 
-                Mod.Context.Log.Debug("Sound file loaded: {0}", clip.name);
+				m_ctx.Log.Debug("Sound file loaded: {0}", clip.name);
                 s_sounds.Add(clip);
             }
         }
-
-        private string FixPath(string path)
-        {
-            return path.Replace(@"\", "/");
-        }   
-
 
         private void PlayAudio(IBuild build)
 		{  
@@ -95,14 +82,20 @@ namespace Buildron.ClassicMods.SoundMod.Controllers
                     availableSounds = s_sounds.Where(s => s.name.Contains(filter)).ToList();
                 }
 
-                Mod.Context.Log.Debug("Found {0} sounds for user {1} and status {2}.", availableSounds.Count, username, status);
+				m_ctx.Log.Debug("Found {0} sounds for user {1} and status {2}.", availableSounds.Count, username, status);
 
                 if (availableSounds.Count > 0)
                 {
-                    var source = GetComponent<AudioSource>();
-                    source.volume = 1f;
-                    source.clip = availableSounds[Random.Range(0, availableSounds.Count)];
-                    source.Play();
+                    var audioToPlay = availableSounds[Random.Range(0, availableSounds.Count)];
+
+					var source = m_ctx
+						.GameObjectsPool
+						.GetGameObject("AudioSource", audioToPlay.length + 1) // +1 second.
+						.GetComponent<AudioSource>();
+                    
+					source.volume = 1f;
+                    source.clip = audioToPlay;
+                    source.Play();                    
                 }
             }
         }
