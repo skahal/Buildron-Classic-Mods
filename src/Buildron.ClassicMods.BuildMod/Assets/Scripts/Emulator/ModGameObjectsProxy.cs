@@ -52,6 +52,16 @@ namespace Buildron.Infrastructure.GameObjectsProxies
 
 			return go;
 		}
+
+		public TComponent AddComponent<TComponent> (GameObject container) where TComponent : Component
+		{
+			return container.AddComponent<TComponent> ();
+		}
+
+		public MonoBehaviour AddComponent (GameObject container, string componentTypeName)
+		{
+			return container.AddComponent (Type.GetType (componentTypeName)) as MonoBehaviour;
+		}
         #endregion
     }
 }

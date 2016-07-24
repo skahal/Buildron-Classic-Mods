@@ -62,6 +62,10 @@ public class EmulatorModContext : MonoBehaviour, IModContext {
 	public IUIProxy UI { get; private set; } 
 
 	public IFileSystemProxy FileSystem { get; private set; }
+
+	public IDataProxy Data { get; private set; }
+
+	public IBuildGameObjectsProxy BuildGameObjects { get; private set; }
 	#endregion
 
 	#region Methods
