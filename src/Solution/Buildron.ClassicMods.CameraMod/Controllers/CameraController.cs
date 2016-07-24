@@ -4,6 +4,7 @@ using Buildron.Domain.Mods;
 using Buildron.Domain.CIServers;
 using System.Collections;
 using Skahal.Threading;
+using Buildron.Domain.RemoteControls;
 
 namespace Buildron.ClassicMods.CameraMod
 {
@@ -48,7 +49,6 @@ namespace Buildron.ClassicMods.CameraMod
 
 		public Vector3 DistanceFromFocusBuild = new Vector3 (0, 0, -3);
 		public Vector3 DistanceFromOriginalPosition = new Vector3 (0, 0, -1);
-		public Vector3 DistanceFromHistory = new Vector3 (0, 0, -11);
 		public float AdjustPositionInterval = 0.02f;
 		public float VelocityToShowTop = 0.1f;
 		public float VelocityToShowSides = 0.1f;
@@ -76,14 +76,14 @@ namespace Buildron.ClassicMods.CameraMod
 
 			Messenger.Register (gameObject, 
 				"OnShowHistoryRequested",
-				"OnShowBuildsRequested",
-				"OnZoomIn",
-				"OnZoomOut",
-				"OnGoLeft",
-				"OnGoRight",
-				"OnGoUp",
-				"OnGoDown",
-				"OnResetCamera");
+				"OnShowBuildsRequested");
+//				"OnZoomIn",
+//				"OnZoomOut",
+//				"OnGoLeft",
+//				"OnGoRight",
+//				"OnGoUp",
+//				"OnGoDown",
+			//	"OnResetCamera");
 
 			m_ctx.BuildFound += delegate {
 				ChangeByBuilds ();
@@ -97,6 +97,22 @@ namespace Buildron.ClassicMods.CameraMod
 				ChangeByBuilds ();
 			};
 	
+			m_ctx.RemoteControlCommandReceived += (sender, e) => {
+				var moveCmd = e.Command as MoveCameraRemoteControlCommand;
+
+				if(moveCmd != null) {
+					m_ctx.Log.Debug("Moving camera {0}...", moveCmd.Direction);
+					Reposition(moveCmd.Direction);
+					return;
+				}
+
+				var resetCmd = e.Command as ResetCameraRemoteControlCommand;
+
+				if(resetCmd != null) {
+					m_ctx.Log.Debug("Reseting camera...");
+					ResetCamera();
+				}
+			};
 			m_ctx.CIServerConnected += HandleCIServerConnected;
 			PrepareEffects ();
 			StartCoroutine (AdjustCameraPosition ());
@@ -108,7 +124,7 @@ namespace Buildron.ClassicMods.CameraMod
 
 			if (m_originalPosition.z == 0) {
 				transform.position = m_originalPosition;
-				OnResetCamera ();
+				ResetCamera ();
 			} else {
 				m_targetPosition = m_originalPosition;
 				m_autoPosition = false;
@@ -244,44 +260,6 @@ namespace Buildron.ClassicMods.CameraMod
 			};
 		}
 
-		private void OnShowHistoryRequested ()
-		{
-			// TODO: see this after move builds to BuildMod
-			//		var histories = BuildsHistoryController.GetAll ();
-			//		
-			//		if (histories.Length > 0) {
-			//			m_state = CameraState.GoingToHistory;
-			//			
-			//			StatusBarController.SetStatusText ("Today's builds history");
-			//			
-			//			SHCoroutine.Start (2f, () => 
-			//			{
-			//				SHCoroutine.Loop (1.5f, 0, histories.Length, (t) => 
-			//				{
-			//					if (m_serverService.GetState().IsShowingHistory) {
-			//						m_state = CameraState.ShowingHistory;
-			//						m_targetPosition = histories [histories.Length - 1 - Mathf.FloorToInt (t)].transform.position + DistanceFromHistory; 
-			//						return true;
-			//					}
-			//					
-			//					return false;
-			//				});
-			//			});
-			//		}
-		}
-
-		private void OnShowBuildsRequested ()
-		{
-			m_state = CameraState.GoingToBuilds;
-
-			// TODO: maybe should go to IUIProxy.
-			//StatusBarController.ClearStatusText ();
-
-			SHCoroutine.Start (3f, () => {
-				ChangeByBuilds ();
-			});
-		}
-
 		private void Reposition (Vector3 increment)
 		{
 			m_originalPosition += increment;        
@@ -289,37 +267,7 @@ namespace Buildron.ClassicMods.CameraMod
 			SaveCameraPosition ();
 		}
 
-		private void OnZoomIn ()
-		{
-			Reposition (Vector3.forward);
-		}
-
-		private void OnZoomOut ()
-		{
-			Reposition (Vector3.back);
-		}
-
-		private void OnGoLeft ()
-		{
-			Reposition (Vector3.left);
-		}
-
-		private void OnGoRight ()
-		{
-			Reposition (Vector3.right);
-		}
-
-		private void OnGoUp ()
-		{
-			Reposition (Vector3.up);
-		}
-
-		private void OnGoDown ()
-		{
-			Reposition (Vector3.down);
-		}
-
-		private void OnResetCamera ()
+		private void ResetCamera ()
 		{
 			m_originalPosition = m_firstPosition;
 			m_autoPosition = true;
