@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using System.Linq;
-using Buildron.Controllers.Builds;
+using Buildron.Domain.Mods;
 
 namespace Buildron.ClassicMods.BuildMod.Controllers
 {

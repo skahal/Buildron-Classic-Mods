@@ -4,7 +4,6 @@ using Buildron.Domain.Mods;
 using Buildron.Domain.CIServers;
 using System.Collections;
 using Skahal.Threading;
-using Buildron.Controllers.Builds;
 
 namespace Buildron.ClassicMods.CameraMod
 {
@@ -154,15 +153,22 @@ namespace Buildron.ClassicMods.CameraMod
 		private Vector3 CalculatePositionToShowAllBuilds ()
 		{
 			if (m_autoPosition) {
-				var all = m_ctx.BuildGameObjects.GetAll ();
+				var allBuilds = m_ctx.BuildGameObjects.GetAll ();
 					
-				var currentVisiblesCount = all.Length;
+				var currentVisiblesCount = allBuilds.Length;
 				var diff = m_lastVisiblesCount - currentVisiblesCount;
 	
 				if (diff > 0) {
 					m_originalPosition = m_firstPosition;
 				} else {
-					m_originalPosition += CalculateMoveByBuilds(all);
+					var move = CalculateMoveBy(allBuilds);
+
+					if (move == Vector3.zero) {
+						var allUsers = m_ctx.UserGameObjects.GetAll ();
+						move = CalculateMoveBy(allUsers);
+					}
+
+					m_originalPosition += move;
 				}
 							
 				m_lastVisiblesCount = currentVisiblesCount;
@@ -171,7 +177,7 @@ namespace Buildron.ClassicMods.CameraMod
 			return m_originalPosition;
 		}
 
-		private Vector3 CalculateMoveByBuilds(IBuildController[] all)
+		private Vector3 CalculateMoveBy(IGameObjectController[] all)
 		{
 			var stopped = all.Stopped();
 			var stoppedCount = stopped.Length;
@@ -184,7 +190,7 @@ namespace Buildron.ClassicMods.CameraMod
 			var fromBottom = stopped.CountVisiblesFromBottom();
 			var fromLeft = stopped.CountVisiblesFromLeft();
 
-			if (fromTop > fromBottom) {
+			if (fromTop > fromBottom + 1) {
 				y = -1;
 			} else if (fromTop < fromBottom) {
 				y = 1;
