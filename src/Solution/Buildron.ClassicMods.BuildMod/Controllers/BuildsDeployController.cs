@@ -26,7 +26,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		#endregion
 
 		#region Editor properties
-		public Vector3 DeployCenterPosition = new Vector3 (-0.5f, 20, 1.5f);
+		public Vector3 DeployCenterPosition = new Vector3 (0f, 20, 1.5f);
 		public float DeployInterval = 0.4f;
 		public float TotemsDistance = 13;
 		public Text BuildsCountLabel;

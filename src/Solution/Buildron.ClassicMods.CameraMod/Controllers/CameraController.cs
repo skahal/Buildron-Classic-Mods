@@ -4,6 +4,7 @@ using Buildron.Domain.Mods;
 using Buildron.Domain.CIServers;
 using System.Collections;
 using Skahal.Threading;
+using Buildron.Controllers.Builds;
 
 namespace Buildron.ClassicMods.CameraMod
 {
@@ -51,7 +52,7 @@ namespace Buildron.ClassicMods.CameraMod
 		public Vector3 DistanceFromHistory = new Vector3 (0, 0, -11);
 		public float AdjustPositionInterval = 0.02f;
 		public float VelocityToShowTop = 0.1f;
-		public float VelocityToShowSides = 0.2f;
+		public float VelocityToShowSides = 0.1f;
 		public float MinY = 0;
 
 		#endregion
@@ -66,9 +67,9 @@ namespace Buildron.ClassicMods.CameraMod
 
 			m_originalPosition = m_loadedPosition = m_ctx.Data.GetValue<Vector3> ("CameraPosition");
 
-			//if (m_originalPosition == Vector3.zero) {
-			m_originalPosition = new Vector3 (0f, 8f, -20f); 
-			//}
+			if (m_originalPosition == Vector3.zero) {
+				m_originalPosition = new Vector3 (0f, 8f, -20f); 
+			}
 
 			m_targetPosition = m_originalPosition;
 
@@ -77,15 +78,13 @@ namespace Buildron.ClassicMods.CameraMod
 			Messenger.Register (gameObject, 
 				"OnShowHistoryRequested",
 				"OnShowBuildsRequested",
-				"OnServerDown",
 				"OnZoomIn",
 				"OnZoomOut",
 				"OnGoLeft",
 				"OnGoRight",
 				"OnGoUp",
 				"OnGoDown",
-				"OnResetCamera",
-				"OnBuildFilterUpdated");
+				"OnResetCamera");
 
 			m_ctx.BuildFound += delegate {
 				ChangeByBuilds ();
@@ -163,27 +162,7 @@ namespace Buildron.ClassicMods.CameraMod
 				if (diff > 0) {
 					m_originalPosition = m_firstPosition;
 				} else {
-					var stopped = all.Stopped();
-
-					float y = 0;
-
-					if(!stopped.AreVisiblesFromTop()) {
-						y = 1;
-					}
-					else if(!stopped.AreVisiblesFromBottom()){
-						y = -1;
-					}
-
-					float z = 0;
-
-					if(!stopped.AreVisiblesFromRight() || !stopped.AreVisiblesFromLeft()){
-						z = -1;
-					}
-
-					m_originalPosition += new Vector3 (
-						0, 
-						y * VelocityToShowTop,
-						z * VelocityToShowSides);
+					m_originalPosition += CalculateMoveByBuilds(all);
 				}
 							
 				m_lastVisiblesCount = currentVisiblesCount;
@@ -191,6 +170,40 @@ namespace Buildron.ClassicMods.CameraMod
 		
 			return m_originalPosition;
 		}
+
+		private Vector3 CalculateMoveByBuilds(IBuildController[] all)
+		{
+			var stopped = all.Stopped();
+
+			var y = 0f;
+			float z = 0;
+			var areNotVisiblesFromTop = !stopped.AreVisiblesFromTop ();
+			var areNotVisiblesFromBottom = !stopped.AreVisiblesFromBottom ();
+
+			if (areNotVisiblesFromTop) {
+				// Are there builds not visible from camera top border?
+				// Move camera up.
+				y = 1f;
+			} else if (areNotVisiblesFromBottom) {
+				// Are there builds not visible from camera bottom border?
+				// Move camera down.
+				y = -1f;
+			}
+
+			if((areNotVisiblesFromTop && areNotVisiblesFromBottom) 
+				|| (!stopped.AreVisiblesFromRight() || !stopped.AreVisiblesFromLeft())) {
+				// Are there builds not visible from camera bottom and top borders
+				// or from camera right border or from camera left boder?
+				// Move camera back.
+				z = -1;
+			}
+
+			return new Vector3 (
+				0, 
+				y * VelocityToShowTop,
+				z * VelocityToShowSides);
+		}
+			
 
 		private void ChangeByBuilds ()
 		{
