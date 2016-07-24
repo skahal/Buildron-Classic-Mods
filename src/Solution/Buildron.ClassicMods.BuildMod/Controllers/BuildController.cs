@@ -48,13 +48,13 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 
 		public Collider CenterCollider { get; private set; }
 
-		public Collider TopEdge { get; private set; }
+		public Collider TopCollider { get; private set; }
 
-		public Collider BottomEdge { get; private set; }
+		public Collider BottomCollider { get; private set; }
 
-		public Collider LeftEdge { get; private set; }
+		public Collider LeftCollider { get; private set; }
 
-		public Collider RightEdge { get; private set; }
+		public Collider RightCollider { get; private set; }
 
 		public string ProjectText {
 			get {
@@ -114,10 +114,10 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 			m_focusedPanel = transform.FindChild ("FocusedPanel").gameObject;	
 
 			CenterCollider = transform.FindChild ("Edges/CenterCollider").GetComponent<Collider> ();
-			TopEdge = transform.FindChild ("Edges/TopEdge").GetComponent<Collider> ();
-			BottomEdge = transform.FindChild ("Edges/BottomEdge").GetComponent<Collider> ();
-			LeftEdge = transform.FindChild ("Edges/LeftEdge").GetComponent<Collider> ();
-			RightEdge = transform.FindChild ("Edges/RightEdge").GetComponent<Collider> ();
+			TopCollider = transform.FindChild ("Edges/TopCollider").GetComponent<Collider> ();
+			BottomCollider = transform.FindChild ("Edges/BottomCollider").GetComponent<Collider> ();
+			LeftCollider = transform.FindChild ("Edges/LeftCollider").GetComponent<Collider> ();
+			RightCollider = transform.FindChild ("Edges/RightCollider").GetComponent<Collider> ();
 
 			Rigidbody = GetComponent<Rigidbody> ();
 			m_bodyCollider = GetComponent<Collider> ();
@@ -287,10 +287,10 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 
 				Rigidbody.isKinematic = true;
 				m_bodyCollider.enabled = false;
-				TopEdge.enabled = false;
-				RightEdge.enabled = false;
-				BottomEdge.enabled = false;
-				LeftEdge.enabled = false;
+				TopCollider.enabled = false;
+				RightCollider.enabled = false;
+				BottomCollider.enabled = false;
+				LeftCollider.enabled = false;
             
 				Body.SetActive (false);
 				IsVisible = false;
@@ -315,10 +315,10 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 
 				Rigidbody.isKinematic = false;
 				m_bodyCollider.enabled = true;
-				TopEdge.enabled = true;
-				RightEdge.enabled = true;
-				BottomEdge.enabled = true;
-				LeftEdge.enabled = true;
+				TopCollider.enabled = true;
+				RightCollider.enabled = true;
+				BottomCollider.enabled = true;
+				LeftCollider.enabled = true;
 
 				Body.SetActive (true);
 				IsVisible = true;			

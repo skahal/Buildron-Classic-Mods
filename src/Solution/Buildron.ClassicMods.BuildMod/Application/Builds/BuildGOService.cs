@@ -54,10 +54,10 @@ namespace Buildron.ClassicMods.BuildMod.Application
                 && b.IsVisible
                 && !b.IsHistoryBuild
                 && Mathf.Abs(b.Rigidbody.velocity.y) <= b.VisibleMaxYVelocity
-                && !b.TopEdge.IsVisibleFrom(Camera.main)
-                && (b.LeftEdge.IsVisibleFrom(Camera.main)
-                || b.RightEdge.IsVisibleFrom(Camera.main)
-                || b.BottomEdge.IsVisibleFrom(Camera.main)));
+                && !b.TopCollider.IsVisibleFrom(Camera.main)
+                && (b.LeftCollider.IsVisibleFrom(Camera.main)
+                || b.RightCollider.IsVisibleFrom(Camera.main)
+                || b.BottomCollider.IsVisibleFrom(Camera.main)));
         }
 
         public bool HasNotVisiblesFromSides()
@@ -70,10 +70,10 @@ namespace Buildron.ClassicMods.BuildMod.Application
                 && b.IsVisible
                 && !b.IsHistoryBuild
 				&& Mathf.Abs(b.Rigidbody.velocity.y) <= b.VisibleMaxYVelocity
-                && b.TopEdge.IsVisibleFrom(Camera.main)
-                && (!b.LeftEdge.IsVisibleFrom(Camera.main)
-                || !b.RightEdge.IsVisibleFrom(Camera.main)
-                || !b.BottomEdge.IsVisibleFrom(Camera.main)));
+                && b.TopCollider.IsVisibleFrom(Camera.main)
+                && (!b.LeftCollider.IsVisibleFrom(Camera.main)
+                || !b.RightCollider.IsVisibleFrom(Camera.main)
+                || !b.BottomCollider.IsVisibleFrom(Camera.main)));
         }
 
         public IList<GameObject> GetVisiblesOrderByPosition()
