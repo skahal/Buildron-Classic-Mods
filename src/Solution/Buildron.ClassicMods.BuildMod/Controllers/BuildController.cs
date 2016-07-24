@@ -128,7 +128,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 			CheckState ();
 			MonitorTriggeredByPhotoUpdated ();
 	
-			if (!IsHistoryBuild) {
+			if (!IsHistoryBuild) { // TODO: remove history things.
 				Model.StatusChanged += delegate {
 					if (Model.Status <= BuildStatus.Running && Model.Status != BuildStatus.Queued) {
 						Rigidbody.AddForce (StatusChangedForce);
