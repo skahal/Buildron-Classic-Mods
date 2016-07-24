@@ -7,13 +7,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using System.Linq;
+using Buildron.Controllers.Builds;
 
 namespace Buildron.ClassicMods.BuildMod.Controllers
 {
     /// <summary>
     /// Build controller.
     /// </summary>
-    public class BuildController : MonoBehaviour, ISHController<IBuild>
+	public class BuildController : MonoBehaviour, ISHController<IBuild>, IBuildController
 	{
 		#region Fields
 		private static UnityEngine.Object s_buildFailedExplosionPrefab;
@@ -44,6 +45,8 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		public GameObject Body { get; private set; }
 
 		public Rigidbody Rigidbody { get; private set; }
+
+		public Collider CenterCollider { get; private set; }
 
 		public Collider TopEdge { get; private set; }
 
@@ -108,7 +111,9 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 			m_userAvatarIcon.enabled = false;
 		
 			Body = transform.FindChild ("Buildron-Totem").gameObject;
-			m_focusedPanel = transform.FindChild ("FocusedPanel").gameObject;		
+			m_focusedPanel = transform.FindChild ("FocusedPanel").gameObject;	
+
+			CenterCollider = transform.FindChild ("Edges/CenterCollider").GetComponent<Collider> ();
 			TopEdge = transform.FindChild ("Edges/TopEdge").GetComponent<Collider> ();
 			BottomEdge = transform.FindChild ("Edges/BottomEdge").GetComponent<Collider> ();
 			LeftEdge = transform.FindChild ("Edges/LeftEdge").GetComponent<Collider> ();
