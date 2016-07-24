@@ -174,27 +174,23 @@ namespace Buildron.ClassicMods.CameraMod
 		private Vector3 CalculateMoveByBuilds(IBuildController[] all)
 		{
 			var stopped = all.Stopped();
+			var stoppedCount = stopped.Length;
 
 			var y = 0f;
-			float z = 0;
-			var areNotVisiblesFromTop = !stopped.AreVisiblesFromTop ();
-			var areNotVisiblesFromBottom = !stopped.AreVisiblesFromBottom ();
+			float z = 0f;
 
-			if (areNotVisiblesFromTop) {
-				// Are there builds not visible from camera top border?
-				// Move camera up.
-				y = 1f;
-			} else if (areNotVisiblesFromBottom) {
-				// Are there builds not visible from camera bottom border?
-				// Move camera down.
-				y = -1f;
-			}
+			var fromTop = stopped.CountVisiblesFromTop();
+			var fromRight = stopped.CountVisiblesFromRight();
+			var fromBottom = stopped.CountVisiblesFromBottom();
+			var fromLeft = stopped.CountVisiblesFromLeft();
 
-			if((areNotVisiblesFromTop && areNotVisiblesFromBottom) 
-				|| (!stopped.AreVisiblesFromRight() || !stopped.AreVisiblesFromLeft())) {
-				// Are there builds not visible from camera bottom and top borders
-				// or from camera right border or from camera left boder?
-				// Move camera back.
+			if (fromTop > fromBottom) {
+				y = -1;
+			} else if (fromTop < fromBottom) {
+				y = 1;
+			} 
+
+			if (fromLeft < stoppedCount || fromRight < stoppedCount) {
 				z = -1;
 			}
 
