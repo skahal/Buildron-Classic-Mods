@@ -37,6 +37,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 						OnBuildStarted(e2.Build);
 					};
 
+					Mod.Context.GameObjects.AddComponent<BuildsHistoryCameraController>(Camera.main.gameObject);
 					Messenger.Register(gameObject, "OnBuildStarted");
 				}
 				else {
@@ -72,6 +73,11 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 					}
 				}
 			}
+		}
+
+		public static GameObject[] GetAll()
+		{
+			return GameObject.FindGameObjectsWithTag ("History");
 		}
 		#endregion
 	}
