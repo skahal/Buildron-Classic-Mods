@@ -19,19 +19,12 @@ namespace Buildron.ClassicMods.SoundMod.Controllers
         {
 			m_ctx = Mod.Context;
 
-			if (m_ctx.CIServer.FxSoundsEnabled)
-            {
-                LoadSounds();
-				m_ctx.GameObjectsPool.CreatePool ("AudioSource", () => {
-					return m_ctx.GameObjects.Create<AudioSource>().gameObject;
-				});
-				m_ctx.BuildFound += (sender, e) => PlayAudio(e.Build);
-				m_ctx.BuildStatusChanged += (sender, e) => PlayAudio(e.Build);                
-            }
-            else
-            {
-                Destroy(this);
-            }
+		    LoadSounds();
+			m_ctx.GameObjectsPool.CreatePool ("AudioSource", () => {
+				return m_ctx.GameObjects.Create<AudioSource>().gameObject;
+			});
+			m_ctx.BuildFound += (sender, e) => PlayAudio(e.Build);
+			m_ctx.BuildStatusChanged += (sender, e) => PlayAudio(e.Build);                
         }
 
         private void LoadSounds()

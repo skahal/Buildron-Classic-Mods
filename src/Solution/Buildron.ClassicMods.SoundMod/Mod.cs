@@ -11,7 +11,9 @@ namespace Buildron.ClassicMods.SoundMod
         {
             Context = context;
 
-            context.GameObjects.Create<BuildSoundEffectController>();
+			if (context.CIServer.FxSoundsEnabled) {
+				context.GameObjects.Create<BuildSoundEffectController> ();
+			}
         }
     }
 }
