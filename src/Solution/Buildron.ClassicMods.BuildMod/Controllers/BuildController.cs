@@ -128,7 +128,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 			CheckState ();
 			MonitorTriggeredByPhotoUpdated ();
 	
-			if (!IsHistoryBuild) { // TODO: remove history things.
+			if (!IsHistoryBuild) {
 				Model.StatusChanged += delegate {
 					if (Model.Status <= BuildStatus.Running && Model.Status != BuildStatus.Queued) {
 						Rigidbody.AddForce (StatusChangedForce);
@@ -196,7 +196,6 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 
 				if (statusChanged) {
 					CreateFailedEffects ();
-					Messenger.Send ("OnBuildFailed", gameObject);
 				}
 				break;
 
@@ -206,17 +205,12 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 
 				if (statusChanged) {
 					CreateSuccessEffects ();
-					Messenger.Send ("OnBuildSuccess", gameObject);
 				}
 				break;
 
 			case BuildStatus.Queued:
 				color = QueuedColor;
 				UpdateRunningStatusIcon (true);
-
-				if (statusChanged) {
-					Messenger.Send ("OnBuildQueued", gameObject);
-				}
 				break;
 
 			default:
@@ -224,10 +218,6 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 				UpdateRunningStatusIcon (false);
 
 				m_progressBar.UpdateValue (Model.PercentageComplete);
-
-				if (statusChanged) {
-					Messenger.Send ("OnBuildRunning", gameObject);
-				}
 				break;
 			}
 
@@ -275,7 +265,6 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 			if (!m_groundReachdAlreadRaised && !IsHistoryBuild) {
 				m_groundReachdAlreadRaised = true;
 				HasReachGround = true;
-				Messenger.Send ("OnBuildReachGround", gameObject);
 			}
 		}
 
@@ -302,8 +291,6 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 				HasReachGround = false;
 				m_groundReachdAlreadRaised = false;
 				m_focusedPanel.SetActive (false);
-
-				Messenger.Send ("OnBuildHidden");
 			}
 		}
 
@@ -330,9 +317,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 				if (Model.IsRunning()) {
 					m_runningStatusIcon.enabled = true;
 					m_progressBar.Show ();
-				}
-
-				Messenger.Send ("OnBuildVisible");
+				}                
 			}
 		}
 

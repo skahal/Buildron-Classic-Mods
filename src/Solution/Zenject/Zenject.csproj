@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -31,9 +31,6 @@
     <Reference Include="System" />
     <Reference Include="UnityEngine">
       <HintPath>..\references\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>..\references\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -100,18 +97,6 @@
     <Compile Include="Source\Binding\Finalizers\SubContainerMethodBindingFinalizer.cs" />
     <Compile Include="Source\Binding\Finalizers\SubContainerPrefabBindingFinalizer.cs" />
     <Compile Include="Source\Binding\Finalizers\SubContainerPrefabResourceBindingFinalizer.cs" />
-    <Compile Include="Source\Editor\ObjectGraphVisualizer.cs" />
-    <Compile Include="Source\Editor\UnityInspectorListEditor.cs" />
-    <Compile Include="Source\Editor\ZenMenuItems.cs" />
-    <Compile Include="Source\Editor\ZenUnityEditorUtil.cs" />
-    <Compile Include="Source\Editor\EditorWindow\GuiRenderableManager.cs" />
-    <Compile Include="Source\Editor\EditorWindow\IGuiRenderable.cs" />
-    <Compile Include="Source\Editor\EditorWindow\ZenjectEditorWindow.cs" />
-    <Compile Include="Source\Editor\Editors\ContextEditor.cs" />
-    <Compile Include="Source\Editor\Editors\GameObjectContextEditor.cs" />
-    <Compile Include="Source\Editor\Editors\ProjectContextEditor.cs" />
-    <Compile Include="Source\Editor\Editors\SceneContextEditor.cs" />
-    <Compile Include="Source\Editor\Editors\SceneDecoratorContextEditor.cs" />
     <Compile Include="Source\Factories\DynamicFactory.cs" />
     <Compile Include="Source\Factories\Factory.cs" />
     <Compile Include="Source\Factories\IFactory.cs" />
@@ -313,20 +298,6 @@
     <None Include="Source\Binding\Finalizers\SubContainerMethodBindingFinalizer.cs.meta" />
     <None Include="Source\Binding\Finalizers\SubContainerPrefabBindingFinalizer.cs.meta" />
     <None Include="Source\Binding\Finalizers\SubContainerPrefabResourceBindingFinalizer.cs.meta" />
-    <None Include="Source\Editor\EditorWindow.meta" />
-    <None Include="Source\Editor\Editors.meta" />
-    <None Include="Source\Editor\ObjectGraphVisualizer.cs.meta" />
-    <None Include="Source\Editor\UnityInspectorListEditor.cs.meta" />
-    <None Include="Source\Editor\ZenMenuItems.cs.meta" />
-    <None Include="Source\Editor\ZenUnityEditorUtil.cs.meta" />
-    <None Include="Source\Editor\EditorWindow\GuiRenderableManager.cs.meta" />
-    <None Include="Source\Editor\EditorWindow\IGuiRenderable.cs.meta" />
-    <None Include="Source\Editor\EditorWindow\ZenjectEditorWindow.cs.meta" />
-    <None Include="Source\Editor\Editors\ContextEditor.cs.meta" />
-    <None Include="Source\Editor\Editors\GameObjectContextEditor.cs.meta" />
-    <None Include="Source\Editor\Editors\ProjectContextEditor.cs.meta" />
-    <None Include="Source\Editor\Editors\SceneContextEditor.cs.meta" />
-    <None Include="Source\Editor\Editors\SceneDecoratorContextEditor.cs.meta" />
     <None Include="Source\Factories\DynamicFactory.cs.meta" />
     <None Include="Source\Factories\Factory.cs.meta" />
     <None Include="Source\Factories\IFactory.cs.meta" />

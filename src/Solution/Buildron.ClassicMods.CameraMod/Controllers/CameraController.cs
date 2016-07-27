@@ -5,6 +5,8 @@ using Buildron.Domain.CIServers;
 using System.Collections;
 using Skahal.Threading;
 using Buildron.Domain.RemoteControls;
+using System.Collections.Generic;
+using Skahal.Common;
 
 namespace Buildron.ClassicMods.CameraMod
 {
@@ -26,10 +28,9 @@ namespace Buildron.ClassicMods.CameraMod
 	/// <summary>
 	/// Camera controller.
 	/// </summary>
-	public class CameraController : MonoBehaviour
+	public class CameraController : MonoBehaviour, IEventSubscriber
 	{
 		#region Fields
-
 		private Vector3 m_firstPosition;
 		private int m_lastVisiblesCount;
 		private Vector3 m_loadedPosition;
@@ -42,7 +43,7 @@ namespace Buildron.ClassicMods.CameraMod
 		private Vector3 m_historyPosition;
 		private bool m_autoPosition = true;
 		private IModContext m_ctx;
-
+		private Transform m_cameraTransform;
 		#endregion
 
 		#region Properties
@@ -61,7 +62,8 @@ namespace Buildron.ClassicMods.CameraMod
 		private void Awake ()
 		{		
 			m_ctx = Mod.Context;
-			m_firstPosition = transform.position;
+			m_cameraTransform = m_ctx.Camera.MainCamera.transform;
+			m_firstPosition = m_cameraTransform.position;
 			m_historyPosition = m_originalPosition + new Vector3 (0, 30, 25);	
 
 			m_originalPosition = m_loadedPosition = m_ctx.Data.GetValue<Vector3> ("CameraPosition");
@@ -73,17 +75,6 @@ namespace Buildron.ClassicMods.CameraMod
 			m_targetPosition = m_originalPosition;
 
 			m_ctx.Log.Warning ("Setting camera position to latest position: {0}", m_originalPosition);
-
-			Messenger.Register (gameObject, 
-				"OnShowHistoryRequested",
-				"OnShowBuildsRequested");
-//				"OnZoomIn",
-//				"OnZoomOut",
-//				"OnGoLeft",
-//				"OnGoRight",
-//				"OnGoUp",
-//				"OnGoDown",
-			//	"OnResetCamera");
 
 			m_ctx.BuildFound += delegate {
 				ChangeByBuilds ();
@@ -115,6 +106,10 @@ namespace Buildron.ClassicMods.CameraMod
 			};
 			m_ctx.CIServerConnected += HandleCIServerConnected;
 			PrepareEffects ();
+		}
+
+		void OnEnable()
+		{
 			StartCoroutine (AdjustCameraPosition ());
 		}
 
@@ -123,7 +118,7 @@ namespace Buildron.ClassicMods.CameraMod
 			m_state = CameraState.ShowingBuilds;
 
 			if (m_originalPosition.z == 0) {
-				transform.position = m_originalPosition;
+				m_cameraTransform.position = m_originalPosition;
 				ResetCamera ();
 			} else {
 				m_targetPosition = m_originalPosition;
@@ -163,7 +158,7 @@ namespace Buildron.ClassicMods.CameraMod
 
 		private void LateUpdate ()
 		{
-			transform.position = Vector3.Lerp (transform.position, m_targetPosition, Time.deltaTime);
+			m_cameraTransform.position = Vector3.Lerp (m_cameraTransform.position, m_targetPosition, Time.deltaTime);
 		}
 
 		private Vector3 CalculatePositionToShowAllBuilds ()
@@ -231,20 +226,19 @@ namespace Buildron.ClassicMods.CameraMod
 				var visibleOne = visibles [0];
 				m_target = visibleOne.gameObject.transform;
 				m_state = CameraState.ShowingFocusBuild;
-				Messenger.Send ("OnCameraZoomIn");
 			} else {
 				m_target = null;
 				m_state = CameraState.ShowingBuilds;
-				Messenger.Send ("OnCameraZoomOut");
 			}
 		}
 
 		private void PrepareEffects ()
 		{
-			m_serverDownBlurEffect = m_ctx.GameObjects.AddComponent (gameObject, "BlurEffect");	
+			var cameraGO = m_ctx.Camera.MainCamera.gameObject;
+			m_serverDownBlurEffect = m_ctx.GameObjects.AddComponent (cameraGO , "BlurEffect");	
 			m_serverDownBlurEffect.enabled = true;
 
-			m_serverDownToneMappingEffect = m_ctx.GameObjects.AddComponent (gameObject, "Tonemapping");
+			m_serverDownToneMappingEffect = m_ctx.GameObjects.AddComponent (cameraGO, "Tonemapping");
 			m_serverDownToneMappingEffect.enabled = true;
 
 			m_ctx.CIServerStatusChanged += (e, args) => {
@@ -269,7 +263,7 @@ namespace Buildron.ClassicMods.CameraMod
 
 		private void ResetCamera ()
 		{
-			m_originalPosition = m_firstPosition;
+			m_originalPosition = Vector3.zero;
 			m_autoPosition = true;
 		}
 
@@ -282,7 +276,7 @@ namespace Buildron.ClassicMods.CameraMod
 		{
 			if (m_loadedPosition != m_originalPosition) {
 				m_loadedPosition = m_originalPosition;
-				m_ctx.Data.SaveValue<Vector3> ("CameraPosition", m_originalPosition);
+				m_ctx.Data.SetValue<Vector3> ("CameraPosition", m_originalPosition);
 			}
 		}
 

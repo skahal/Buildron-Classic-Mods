@@ -42,10 +42,11 @@ public class EmulatorModContext : MonoBehaviour, IModContext {
 	public event EventHandler<UserAuthenticationCompletedEventArgs> UserAuthenticationCompleted;
 
 	public event EventHandler<RemoteControlChangedEventArgs> RemoteControlChanged;
-	#endregion
+    public event EventHandler<RemoteControlCommandReceivedEventArgs> RemoteControlCommandReceived;
+    #endregion
 
-	#region Properties
-	public IList<IBuild> Builds { get; private set; }
+    #region Properties
+    public IList<IBuild> Builds { get; private set; }
 
 	public IList<IUser> Users { get; private set; }
 
@@ -66,10 +67,30 @@ public class EmulatorModContext : MonoBehaviour, IModContext {
 	public IDataProxy Data { get; private set; }
 
 	public IBuildGameObjectsProxy BuildGameObjects { get; private set; }
-	#endregion
 
-	#region Methods
-	private void Start()
+    public IUserGameObjectsProxy UserGameObjects
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+	public ICameraProxy Camera {
+		get {
+			throw new NotImplementedException ();
+		}
+	}
+
+	public IPreferenceProxy Preference {
+		get {
+			throw new NotImplementedException ();
+		}
+	}
+    #endregion
+
+    #region Methods
+    private void Start()
 	{
 		Builds = new List<IBuild> ();
 		Users = new List<IUser> ();

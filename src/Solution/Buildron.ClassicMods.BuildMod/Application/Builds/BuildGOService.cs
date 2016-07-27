@@ -24,11 +24,9 @@ namespace Buildron.ClassicMods.BuildMod.Application
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Buildron.Application.BuildGOService"/> class.
 		/// </summary>
-		/// <param name="factory">Factory.</param>
-		/// <param name="log">Log.</param>
-		public BuildGOService(ISHLogStrategy log)             
+		public BuildGOService()             
         {
-			m_log = log;
+			m_log = Mod.Context.Log;
         }
         #endregion
 

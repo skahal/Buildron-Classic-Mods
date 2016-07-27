@@ -36,8 +36,7 @@ namespace Zenject
                 resultType, concreteIdentifier, SingletonTypes.ToPrefab);
 
             if (_prefabCreators.TryGetValue(prefabId, out creator))
-            {
-                // TODO: Check the arguments are the same?
+            {                
                 Assert.That(creator.ExtraArguments.IsEmpty() && extraArguments.IsEmpty(),
                     "Ambiguous creation parameters (arguments) when using ToPrefab with AsSingle");
 

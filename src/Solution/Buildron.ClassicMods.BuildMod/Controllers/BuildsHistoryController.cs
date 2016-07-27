@@ -3,6 +3,7 @@ using Zenject;
 using Buildron.Domain.Builds;
 using Buildron.Domain.CIServers;
 using Buildron.ClassicMods.BuildMod.Application;
+using Buildron.Domain.Mods;
 
 namespace Buildron.ClassicMods.BuildMod.Controllers
 {
@@ -29,22 +30,11 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		{
 			m_container = Mod.Context.GameObjects.Create ("History");
 		
-            Mod.Context.CIServerConnected += (s, e) =>
-            {
-                // TODO: should come from some mod configuration screen.
-                if (e.Server.HistoryTotemEnabled) {
-					Mod.Context.BuildStatusChanged += (sender2, e2) => {
-						OnBuildStarted(e2.Build);
-					};
+          	Messenger.Register(gameObject, "OnBuildStarted");
 
-					Mod.Context.GameObjects.AddComponent<BuildsHistoryCameraController>(Camera.main.gameObject);
-					Messenger.Register(gameObject, "OnBuildStarted");
-				}
-				else {
-                	enabled = false;
-                	Destroy(this);	
-                }
-            };
+			Mod.Context.BuildStatusChanged += (sender2, e2) => {
+				OnBuildStarted(e2.Build);
+			};
 		}
 	
 		private void OnBuildStarted (IBuild build)
@@ -67,9 +57,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 						controller.IsHistoryBuild = true;
 						controller.ProjectText = string.Format ("{0} - {1}", m_historyCount, historyBuild.Configuration.Project.Name);
 						cloneGO.transform.position = new Vector3 (HistoryTotemPosition.x, YCreationMultiplier + (m_historyCount * YCreationMultiplier), HistoryTotemPosition.z);
-						cloneGO.transform.parent = m_container.transform;
-
-						Messenger.Send ("OnBuildHistoryCreated");
+						cloneGO.transform.parent = m_container.transform;                        
 					}
 				}
 			}

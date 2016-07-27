@@ -7,6 +7,7 @@ using Zenject;
 using Buildron.Domain.Builds;
 using Buildron.Domain.CIServers;
 using Buildron.ClassicMods.BuildMod.Application;
+using Buildron.Domain.Mods;
 
 namespace Buildron.ClassicMods.BuildMod.Controllers
 {
@@ -19,17 +20,16 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		private GameObject m_container;
 		private Vector3 m_initialDeployPosition;
 		private Vector3 m_currentDeployPosition;
-		private int m_deployedBuildsCount;
 		private int m_currentTotemIndex;
 		private Queue<GameObject> m_buildsToDeploy = new Queue<GameObject> ();
 		public int m_totemsNumber = 2;
+        private IModContext m_ctx;
 		#endregion
 
 		#region Editor properties
 		public Vector3 DeployCenterPosition = new Vector3 (0f, 20, 1.5f);
 		public float DeployInterval = 0.4f;
-		public float TotemsDistance = 13;
-		public Text BuildsCountLabel;
+		public float TotemsDistance = 13;		
 		#endregion
 
 		#region Properties
@@ -58,27 +58,24 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 
 		private void Awake ()
 		{
-			Instance = this;
-			m_container = Mod.Context.GameObjects.Create("Builds");
-	
-			Mod.Context.CIServerConnected += CIServerConnected;
+            m_ctx = Mod.Context;
+            Instance = this;
+			m_container = m_ctx.GameObjects.Create("Builds");
+
+            m_ctx.CIServerConnected += CIServerConnected;
 		}
 
 		private void CIServerConnected (object sender, CIServerConnectedEventArgs e)
-		{
-			Mod.Context.Log.Debug ("CIServerConnected.");
-				
-			// TODO: should come from some mod configuration screen.
-			m_totemsNumber = Mod.Context.CIServer.BuildsTotemsNumber;
-
+		{            
+            m_totemsNumber = m_ctx.Preference.GetValue<int>("BuildsTotemsNumber");
 			m_initialDeployPosition = CalculateInitialPosition ();
 			m_currentDeployPosition = m_initialDeployPosition;
-		
-			Mod.Context.BuildFound += (sender1, e1) => {		
+
+            m_ctx.BuildFound += (sender1, e1) => {		
 				UpdateBuild (e1.Build);
 			};
 
-			Mod.Context.BuildRemoved += (object sender2, BuildRemovedEventArgs e2) => {		
+            m_ctx.BuildRemoved += (object sender2, BuildRemovedEventArgs e2) => {		
 				RemoveBuild (e2.Build);
 			};
 			
@@ -126,7 +123,6 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 			if (Service.ExistsGameObject (b)) {
 				var go = Service.GetGameObject (b);
 				go.SendMessage ("Hide");
-				m_deployedBuildsCount--;            
 			}
 		}
 
@@ -150,10 +146,6 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 			while (true) {
 				if (m_buildsToDeploy.Count > 0) {
 					m_buildsToDeploy.Dequeue ().SetActive (true);
-					m_deployedBuildsCount++;
-
-					// TODO: how does it will be defined by mods?
-					//BuildsCountLabel.text = string.Format ("Builds\n{0}", m_deployedBuildsCount);
 				}
 		
 				yield return new WaitForSeconds (DeployInterval);	

@@ -13,7 +13,7 @@ namespace Buildron.ClassicMods.CameraMod
 			Context = context;
 
 			context.CIServerConnected += delegate {
-				context.GameObjects.AddComponent<CameraController> (Camera.main.gameObject);
+				context.Camera.RegisterController<CameraController>(CameraControllerKind.Position, true);
 			};
 		}
 	}
