@@ -72,26 +72,7 @@ namespace Buildron.ClassicMods.BuildMod.Application
                 && (!b.LeftCollider.IsVisibleFrom(Camera.main)
                 || !b.RightCollider.IsVisibleFrom(Camera.main)
                 || !b.BottomCollider.IsVisibleFrom(Camera.main)));
-        }
-
-        public IList<GameObject> GetVisiblesOrderByPosition()
-        {
-            var buildsGO = GameObject.FindGameObjectsWithTag("Build");
-            var buildsControllers = buildsGO.Select(b => b.GetComponent<BuildController>());
-
-            var query = from c in buildsControllers
-                        where c.Body != null
-                            && c.IsVisible
-                            && !c.IsHistoryBuild
-                        orderby
-							Mathf.CeilToInt(c.Body.transform.position.x) ascending,
-							Mathf.CeilToInt(c.Body.transform.position.y) descending,
-                            c.gameObject.name ascending
-                        select c.gameObject;
-
-
-            return query.ToList();
-        }
+        }       
 
         public bool HasAllReachGround()
         {

@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Emulator\EmulatorFileSystemProxy.cs" />
     <Compile Include="Assets\Scripts\Emulator\EmulatorGameObjectsPoolProxy.cs" />
     <Compile Include="Assets\Scripts\Emulator\EmulatorModContext.cs" />
+    <Compile Include="Assets\Scripts\Emulator\EmulatorPreferenceProxy.cs" />
     <Compile Include="Assets\Scripts\Emulator\ModGameObjectsProxy.cs" />
     <Compile Include="Assets\Scripts\Emulator\ResourcesFolderAssetsProxy.cs" />
   </ItemGroup>

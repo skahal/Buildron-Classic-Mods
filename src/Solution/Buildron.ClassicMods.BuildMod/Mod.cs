@@ -31,7 +31,7 @@ namespace Buildron.ClassicMods.BuildMod
         private void RegisterPreferences()
         {
             Context.Preference.Register(
-                new Preference("BuildsTotemsNumber", "Totems", PreferenceKind.String, 1),
+                new Preference("BuildsTotemsNumber", "Totems", PreferenceKind.Int, 2),
                 new Preference("HistoryTotemEnabled", "History", PreferenceKind.Bool, true));
         }
 

@@ -240,7 +240,6 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
             if (sprite == null)
             {
 				sprite = BuildRunningFallbackIcon;
-				Mod.Context.Log.Warning("Sprite with name '{0}' to step type '{1}' was not found.", spriteName, stepType);
             }
 
             m_runningStatusIcon.sprite = sprite;
