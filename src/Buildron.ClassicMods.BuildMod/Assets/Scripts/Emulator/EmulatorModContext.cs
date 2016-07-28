@@ -82,11 +82,7 @@ public class EmulatorModContext : MonoBehaviour, IModContext {
 		}
 	}
 
-	public IPreferenceProxy Preference {
-		get {
-			throw new NotImplementedException ();
-		}
-	}
+	public IPreferenceProxy Preference { get; private set; }
     #endregion
 
     #region Methods
@@ -100,6 +96,7 @@ public class EmulatorModContext : MonoBehaviour, IModContext {
 		GameObjects = new ModGameObjectsProxy ();
 		GameObjectsPool = new EmulatorGameObjectsPoolProxy ();
 		FileSystem = new EmulatorFileSystemProxy ();
+		Preference = new EmulatorPreferenceProxy();
 
         var modInterfaceType = typeof(IMod);
 		var modType = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).FirstOrDefault(t => !t.IsAbstract && modInterfaceType.IsAssignableFrom(t));

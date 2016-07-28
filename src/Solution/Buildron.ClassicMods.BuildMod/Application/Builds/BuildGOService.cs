@@ -93,71 +93,10 @@ namespace Buildron.ClassicMods.BuildMod.Application
             return query.ToList();
         }
 
-        /// <summary>
-        /// Freezes all builds game objects
-        /// </summary>
-        public void FreezeAll()
-        {
-            foreach (var go in GetVisiblesOrderByPosition())
-            {
-                var rb = go.GetComponent<Rigidbody>();
-                rb.isKinematic = true;
-
-                // Allows build game object be moved on X and Y (sorting swap effect).
-                rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-            }
-        }
-
-        /// <summary>
-        /// Unfreezes all builds game objects
-        /// </summary>
-        public void UnfreezeAll()
-        {
-            foreach (var go in GetVisiblesOrderByPosition())
-            {
-                var rb = go.GetComponent<Rigidbody>();
-                rb.isKinematic = false;
-
-                // Allows build game object be moved only Y (explosion effects).
-                rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-            }
-        }
-
-        /// <summary>
-        /// Verify if all builds physics are sleeping.
-        /// </summary>
-        /// <remarks>
-        /// Works well with the value of "Sleep Threshold" in the "Project settings\Physics" as "0.05".
-        /// </remarks>
-        /// <returns>True if all builds are sleeping.</returns>
-        public bool AreAllSleeping()
-        {
-			return GetVisibles().All(b => b.GetComponent<BuildController>().Rigidbody.IsSleeping());
-        }
-
         public bool HasAllReachGround()
         {
             return GetVisibles().All(b => b.GetComponent<BuildController>().HasReachGround);
         }
-
-		/// <summary>
-		/// Issue #9: https://github.com/skahal/Buildron/issues/9
-		/// If a build was removed, maybe there are space between builds totems and some can be sleeping.
-		/// Wake everyone!
-		/// </summary>
-		public void WakeUpSleepingBuilds()
-		{      
-			foreach (var visibleBuild in GetVisibles())
-			{
-				var rb = visibleBuild.GetComponent<BuildController>().Rigidbody;
-
-				if (rb.IsSleeping())
-				{
-					m_log.Debug("Wake up build game object: {0}", visibleBuild.name);
-					rb.WakeUp();
-				}
-			}
-		}
 
 		protected override string GetName (IBuild model)
 		{

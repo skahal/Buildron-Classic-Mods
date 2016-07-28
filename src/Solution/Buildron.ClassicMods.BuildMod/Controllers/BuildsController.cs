@@ -21,7 +21,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 			Mod.Context.BuildFound += delegate { HandleVisibleBuilds(); };
 
 			Mod.Context.BuildRemoved += delegate {
-				m_buildGOService.WakeUpSleepingBuilds();
+				Mod.Context.BuildGameObjects.GetAll().WakeUpSleepingBuilds();
 				HandleVisibleBuilds();
 			};
 	    }
