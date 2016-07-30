@@ -13,7 +13,7 @@ namespace Buildron.ClassicMods.UserMod
 
 			context.CIServerConnected += (sender, e) => 
 			{
-				context.GameObjects.Create<UsersManager> ();
+				context.CreateGameObjectFromPrefab("UsersManagerPrefab");
 			};
 		}
 	}
