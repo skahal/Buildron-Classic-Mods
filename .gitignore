@@ -252,3 +252,5 @@ paket-files/
 *.sln.iml
 src/Buildron.ClassicMods.BuildMod/Library
 src/Buildron.ClassicMods.BuildMod/Temp
+src/Buildron.ClassicMods.UserMod/Temp
+src/Buildron.ClassicMods.UserMod/Library
