@@ -53,7 +53,7 @@
      <Compile Include="Assets\Scripts\Emulator\EmulatorFileSystemProxy.cs" />
      <Compile Include="Assets\Scripts\Emulator\EmulatorGameObjectsPoolProxy.cs" />
      <Compile Include="Assets\Scripts\Emulator\EmulatorModContext.cs" />
-     <Compile Include="Assets\Scripts\Emulator\EmulatorPreferenceProxy.cs" />
+     <Compile Include="Assets\Scripts\Emulator\EmulatorPreferencesProxy.cs" />
      <Compile Include="Assets\Scripts\Emulator\ModGameObjectsProxy.cs" />
      <Compile Include="Assets\Scripts\Emulator\ResourcesFolderAssetsProxy.cs" />
      <None Include="Assets\Fonts\readme.txt" />
@@ -79,6 +79,9 @@
  </Reference>
  <Reference Include="Zenject">
  <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Zenject.dll</HintPath>
+ </Reference>
+ <Reference Include="Buildron.ModSdk.Editor">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Buildron.ModSdk.Editor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
