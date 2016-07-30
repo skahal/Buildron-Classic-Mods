@@ -16,20 +16,6 @@ namespace Buildron.ClassicMods.BuildMod.Application
     /// </summary>
     public class BuildGOService : GOServiceBase<IBuild, BuildController>
     {
-		#region Fields
-		private ISHLogStrategy m_log;
-		#endregion
-
-        #region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Buildron.Application.BuildGOService"/> class.
-		/// </summary>
-		public BuildGOService()             
-        {
-			m_log = Mod.Context.Log;
-        }
-        #endregion
-
         #region Methods
         public IList<GameObject> GetVisibles()
         {

@@ -25,14 +25,14 @@ namespace Buildron.ClassicMods.BuildMod
         {
             Context = context;
             RegisterPreferences();
-            CreateControllers();
+			CreateControllers ();
         }
 
         private void RegisterPreferences()
         {
-            Context.Preference.Register(
-                new Preference("BuildsTotemsNumber", "Totems", PreferenceKind.Int, 2),
-                new Preference("HistoryTotemEnabled", "History", PreferenceKind.Bool, true));
+            Context.Preferences.Register(
+                new Preference("BuildsTotemsNumber", "Totems number", PreferenceKind.Int, 2),
+				new Preference("HistoryTotemEnabled", "History enabled", PreferenceKind.Bool, true));
         }
 
         private void CreateControllers()
@@ -51,34 +51,32 @@ namespace Buildron.ClassicMods.BuildMod
             DI = sceneContext;
 
             CreateController("BuildsDeployController");
-            CreateController("BuildHistoryController");
             CreateController("BuildsController");
 
             BuildsHistoryCameraController cameraController = null;
 
-            if (Context.Preference.GetValue<bool>("HistoryTotemEnabled"))
-            {
-                Context.RemoteControlCommandReceived += (sender, e) =>
-                {
-                    var cmd = e.Command as CustomRemoteControlCommand;
+			Context.CIServerConnected += delegate {
+				if (Context.Preferences.GetValue<bool> ("HistoryTotemEnabled")) {
+					CreateController("BuildHistoryController");
+					Context.RemoteControlCommandReceived += (sender, e) => {
+						var cmd = e.Command as CustomRemoteControlCommand;
 
-                    if (cmd != null)
-                    {
-                        switch (cmd.Name)
-                        {
-                            case "ShowHistory":
-                                cameraController = Context.Camera.RegisterController<BuildsHistoryCameraController>(CameraControllerKind.Position, true);
-                                cameraController.ShowHistory();
-                                break;
+						if (cmd != null) {
+							switch (cmd.Name) {
+							case "ShowHistory":
+								cameraController = Context.Camera.RegisterController<BuildsHistoryCameraController> (CameraControllerKind.Position, true);
+								cameraController.ShowHistory ();
+								break;
 
-                            case "ShowBuilds":
-                                cameraController.ShowBuilds();
-                                break;
-                        }
-                    }
-                };
-            }
-        }
+							case "ShowBuilds":
+								cameraController.ShowBuilds ();
+								break;
+							}
+						}
+					};
+				}
+			};
+		}
 
         private void CreateController (string prefabName)
 		{

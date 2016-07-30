@@ -67,8 +67,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 
 		private void CIServerConnected (object sender, CIServerConnectedEventArgs e)
 		{
-            // TODO: Remove when preference mod screen is done.
-            m_totemsNumber = 2;// m_ctx.Preference.GetValue<int>("BuildsTotemsNumber");
+            m_totemsNumber = m_ctx.Preferences.GetValue<int>("BuildsTotemsNumber");
 			m_initialDeployPosition = CalculateInitialPosition ();
 			m_currentDeployPosition = m_initialDeployPosition;
 
