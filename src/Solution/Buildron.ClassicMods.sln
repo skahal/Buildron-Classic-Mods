@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buildron.ClassicMods.UserMo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buildron.ClassicMods.EasterEggMod", "Buildron.ClassicMods.EasterEggMod\Buildron.ClassicMods.EasterEggMod.csproj", "{C3045330-19AE-4FC1-A7C8-C33E8D0B808C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buildron.ClassicMods.EasterEggMod.UnitTests", "Buildron.ClassicMods.EasterEggMod.UnitTests\Buildron.ClassicMods.EasterEggMod.UnitTests.csproj", "{0BAFFC8B-D786-487C-BB2D-A1BBA1313736}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{010E5FD5-7604-4DA2-A456-77C9836074E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{010E5FD5-7604-4DA2-A456-77C9836074E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{010E5FD5-7604-4DA2-A456-77C9836074E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BAFFC8B-D786-487C-BB2D-A1BBA1313736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BAFFC8B-D786-487C-BB2D-A1BBA1313736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BAFFC8B-D786-487C-BB2D-A1BBA1313736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BAFFC8B-D786-487C-BB2D-A1BBA1313736}.Release|Any CPU.Build.0 = Release|Any CPU
 		{992184C1-B5EA-491F-82BC-79D983373EE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{992184C1-B5EA-491F-82BC-79D983373EE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{992184C1-B5EA-491F-82BC-79D983373EE0}.Release|Any CPU.ActiveCfg = Release|Any CPU

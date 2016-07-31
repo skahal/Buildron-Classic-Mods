@@ -2,6 +2,9 @@
 using UnityEngine;
 using System.Collections;
 using Skahal.Logging;
+using Buildron.ClassicMods.EasterEggMod;
+
+
 #endregion
 
 /// <summary>
@@ -21,15 +24,20 @@ public class BallController : MonoBehaviour {
 	private void Initialize (Vector3 position)
 	{
 		transform.position = position + Vector3.up;
-		GetComponent<Rigidbody>().AddForce (new Vector3 (Random.Range (XForceRandomRange.x, XForceRandomRange.y), YForce, ZForce));
+		var rb = GetComponent<Rigidbody> ();
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+		rb.AddForce (new Vector3 (Random.Range (XForceRandomRange.x, XForceRandomRange.y), YForce, ZForce));
 	}
 	
 	public static GameObject CreateGameObject (Vector3 position)
 	{
-		SHLog.Debug ("Requesting ball from poll.");
-		var ball = SHPoolsManager.GetGameObject ("Ball");
+		var ctx = Mod.Context;
+
+		ctx.Log.Debug ("Requesting ball from poll.");
+		var ball =  ctx.GameObjectsPool.GetGameObject ("Ball", 5);
 		ball.SendMessage("Initialize", position);
-		SHLog.Debug ("Ball received from poll.");
+		ctx.Log.Debug ("Ball received from poll.");
 		
 		return ball;
 	}
