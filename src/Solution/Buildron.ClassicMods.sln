@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buildron.ClassicMods.Camera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buildron.ClassicMods.UserMod", "Buildron.ClassicMods.UserMod\Buildron.ClassicMods.UserMod.csproj", "{010E5FD5-7604-4DA2-A456-77C9836074E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buildron.ClassicMods.EasterEggMod", "Buildron.ClassicMods.EasterEggMod\Buildron.ClassicMods.EasterEggMod.csproj", "{C3045330-19AE-4FC1-A7C8-C33E8D0B808C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{AE971983-D03C-4B72-8E92-B7516BF770F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE971983-D03C-4B72-8E92-B7516BF770F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE971983-D03C-4B72-8E92-B7516BF770F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3045330-19AE-4FC1-A7C8-C33E8D0B808C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3045330-19AE-4FC1-A7C8-C33E8D0B808C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3045330-19AE-4FC1-A7C8-C33E8D0B808C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3045330-19AE-4FC1-A7C8-C33E8D0B808C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C3D41BAB-8326-43A4-B05C-B13CB5F12113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C3D41BAB-8326-43A4-B05C-B13CB5F12113}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3D41BAB-8326-43A4-B05C-B13CB5F12113}.Release|Any CPU.ActiveCfg = Release|Any CPU
