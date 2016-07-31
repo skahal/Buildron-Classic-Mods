@@ -30,7 +30,7 @@ public class UserController : MonoBehaviour, IUserController
     /// <summary>
     /// Gets or sets user service.
     /// </summary>
-    public IUser Data
+    public IUser Model
     {
         get
         {
@@ -200,7 +200,7 @@ public class UserController : MonoBehaviour, IUserController
 			var userPrefab = Mod.Context.Assets.Load ("UserPrefab");
 			go = Mod.Context.GameObjects.Create(userPrefab);
 			var controller = go.GetComponent<UserController>();
-			controller.Data = buildUser;
+			controller.Model = buildUser;
 			go.name = buildUser.UserName.ToLowerInvariant();
         }
 

@@ -48,7 +48,7 @@ public class UsersManager : MonoBehaviour
         var go = UserController.GetGameObject (build.TriggeredBy);
 		
 		if (go != null) {
-			go.GetComponent<UserController> ().Data = build.TriggeredBy;
+			go.GetComponent<UserController> ().Model = build.TriggeredBy;
 		} else {
 			go = UserController.CreateGameObject (build.TriggeredBy);
 			go.transform.position = m_currentSpawnPosition;
