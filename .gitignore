@@ -258,3 +258,8 @@ src/Buildron.ClassicMods.EasterEggMod/Library
 src/Buildron.ClassicMods.EasterEggMod/Temp
 src/Buildron.ClassicMods.EnvironmentMod/Library
 src/Buildron.ClassicMods.EnvironmentMod/Temp
+src/Buildron.ClassicMods.SoundMod/Library
+src/Buildron.ClassicMods.SoundMod/Temp
+src/Buildron.ClassicMods.SoundMod
+src/Buildron.ClassicMods.CameraMod
+nohup.out
