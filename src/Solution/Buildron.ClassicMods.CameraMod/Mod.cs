@@ -12,6 +12,9 @@ namespace Buildron.ClassicMods.CameraMod
 		{
 			Context = context;
 
+			context.Preferences.Register (
+				new Preference ("AutoPosition", "Auto position", PreferenceKind.Bool, true));
+			
 			context.CIServerConnected += delegate {
 				context.Camera.RegisterController<CameraController>(CameraControllerKind.Position, true);
 			};

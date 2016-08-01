@@ -104,7 +104,8 @@ namespace Buildron.ClassicMods.CameraMod
 					ResetCamera();
 				}
 			};
-			m_ctx.CIServerConnected += HandleCIServerConnected;
+
+			InitializePosition ();
 			PrepareEffects ();
 		}
 
@@ -113,7 +114,7 @@ namespace Buildron.ClassicMods.CameraMod
 			StartCoroutine (AdjustCameraPosition ());
 		}
 
-		void HandleCIServerConnected (object sender, CIServerConnectedEventArgs e)
+		void InitializePosition ()
 		{
 			m_state = CameraState.ShowingBuilds;
 
@@ -122,8 +123,13 @@ namespace Buildron.ClassicMods.CameraMod
 				ResetCamera ();
 			} else {
 				m_targetPosition = m_originalPosition;
-				m_autoPosition = false;
+				m_autoPosition = m_ctx.Preferences.GetValue<bool>("AutoPosition");
+
+				if (m_autoPosition) {
+					ResetCamera ();
+				}
 			}
+	
 		}
 
 		private IEnumerator AdjustCameraPosition ()
