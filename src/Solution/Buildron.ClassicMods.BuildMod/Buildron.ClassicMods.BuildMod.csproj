@@ -35,14 +35,14 @@
     <Reference Include="UnityEngine">
       <HintPath>..\references\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="Buildron.ModSdk">
-      <HintPath>..\references\Buildron.ModSdk.dll</HintPath>
-    </Reference>
     <Reference Include="Skahal.Unity.Scripts">
       <HintPath>..\references\Skahal.Unity.Scripts.dll</HintPath>
     </Reference>
     <Reference Include="Skahal.Unity.Scripts.Externals">
       <HintPath>..\references\Skahal.Unity.Scripts.Externals.dll</HintPath>
+    </Reference>
+    <Reference Include="Buildron.ModSdk">
+      <HintPath>..\references\Buildron.ModSdk.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
