@@ -1,3 +1,4 @@
+
 using System;
 using Buildron.Domain.Builds;
 using Skahal;
@@ -275,6 +276,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 
 				Rigidbody.isKinematic = true;
 				m_bodyCollider.enabled = false;
+				CenterCollider.enabled = false;
 				TopCollider.enabled = false;
 				RightCollider.enabled = false;
 				BottomCollider.enabled = false;
@@ -301,6 +303,7 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 
 				Rigidbody.isKinematic = false;
 				m_bodyCollider.enabled = true;
+				CenterCollider.enabled = true;
 				TopCollider.enabled = true;
 				RightCollider.enabled = true;
 				BottomCollider.enabled = true;
