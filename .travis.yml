@@ -5,7 +5,7 @@ rvm:
 - 2.1.2
 
 install:
-- .tools/install-ci.sh
+- ./tools/install-ci.sh
 
 script:
-- .tools/buildMods.sh
+- ./tools/buildMods.sh
