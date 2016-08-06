@@ -1,8 +1,12 @@
 language: c
- 
+osx_image: xcode61
+
+rvm:
+- 2.1.2
+
 before_install:
   - sudo apt-get install mono-devel mono-gmcs nunit-console
- 
+  
 install:
 - ./tools/install-ci.sh
 
