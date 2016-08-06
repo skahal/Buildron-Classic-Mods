@@ -7,8 +7,3 @@ curl -o Unity.pkg http://netstorage.unity3d.com/unity/a6d8d714de6f/MacEditorInst
 
 echo 'Installing Unity.pkg'
 sudo installer -dumplog -package Unity.pkg -target /
-
-echo 'Installing mono...'
-sudo apt-get install mono-devel mono-gmcs nunit-console
-
-mozroots --import --sync
