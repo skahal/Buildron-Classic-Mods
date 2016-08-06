@@ -1,0 +1,11 @@
+language: objective-c
+osx_image: xcode61
+
+rvm:
+- 2.1.2
+
+install:
+- .tools/install-ci.sh
+
+script:
+- .tools/buildMods.sh
