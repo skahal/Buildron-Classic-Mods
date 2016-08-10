@@ -45,7 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Editor\ModBuilder.cs" />
+     <Compile Include="Assets\Editor\MD4.cs" />
+     <Compile Include="Assets\Editor\MissingReferencesFinder.cs" />
+     <None Include="Assets\Scripts\references\Buildron.ModSdk.xml" />
      <None Include="Assets\Fonts\readme.txt" />
      <None Include="Assets\Textures\Detonator\Textures\HeatDistort.shader" />
      <None Include="Assets\LifeBar\readme.txt" />
@@ -75,6 +77,30 @@
  </Reference>
  <Reference Include="UnityEditor.TreeEditor">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="Buildron.ClassicMods.BuildMod">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Buildron.ClassicMods.BuildMod.dll</HintPath>
+ </Reference>
+ <Reference Include="Buildron.ModSdk">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Buildron.ModSdk.dll</HintPath>
+ </Reference>
+ <Reference Include="Buildron.ModSdk.Editor">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Buildron.ModSdk.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Giacomelli.Unity.EditorToolbox">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Giacomelli.Unity.EditorToolbox.dll</HintPath>
+ </Reference>
+ <Reference Include="Giacomelli.Unity.Metadata">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Giacomelli.Unity.Metadata.dll</HintPath>
+ </Reference>
+ <Reference Include="Skahal.Unity.Scripts">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Skahal.Unity.Scripts.dll</HintPath>
+ </Reference>
+ <Reference Include="Skahal.Unity.Scripts.Externals">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Skahal.Unity.Scripts.Externals.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Zenject.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>
