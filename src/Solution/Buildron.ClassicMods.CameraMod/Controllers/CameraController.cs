@@ -122,17 +122,12 @@ namespace Buildron.ClassicMods.CameraMod
 				m_cameraTransform.position = m_originalPosition;
 				ResetCamera ();
 			} else {
-				m_targetPosition = m_originalPosition;
-				m_autoPosition = m_ctx.Preferences.GetValue<bool>("AutoPosition");
-
-				if (m_autoPosition) {
-					ResetCamera ();
-				}
+				m_targetPosition = m_originalPosition;				
 			}
 	
 		}
 
-		private IEnumerator AdjustCameraPosition ()
+        private IEnumerator AdjustCameraPosition ()
 		{
 
 			while (true) {
@@ -240,6 +235,8 @@ namespace Buildron.ClassicMods.CameraMod
 
 		private void PrepareEffects ()
 		{
+            // TODO: move the effects stuffs about CI server status to a separate mod: CIServerStatusMod.
+            // TODO: see why buildron is stopping to refresh because the efffect shader not found.
 			var cameraGO = m_ctx.Camera.MainCamera.gameObject;
 			m_serverDownBlurEffect = m_ctx.GameObjects.AddComponent (cameraGO , "BlurEffect");	
 			m_serverDownBlurEffect.enabled = true;
@@ -267,7 +264,7 @@ namespace Buildron.ClassicMods.CameraMod
 			SaveCameraPosition ();
 		}
 
-		private void ResetCamera ()
+		public void ResetCamera ()
 		{
 			m_originalPosition = Vector3.zero;
 			m_autoPosition = true;
