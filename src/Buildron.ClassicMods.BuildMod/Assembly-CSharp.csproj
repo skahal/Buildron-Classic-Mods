@@ -45,19 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Emulator\EmulatorBuild.cs" />
-     <Compile Include="Assets\Scripts\Emulator\EmulatorBuildConfiguration.cs" />
-     <Compile Include="Assets\Scripts\Emulator\EmulatorBuildProject.cs" />
-     <Compile Include="Assets\Scripts\Emulator\EmulatorBuildStep.cs" />
-     <Compile Include="Assets\Scripts\Emulator\EmulatorCIServer.cs" />
-     <Compile Include="Assets\Scripts\Emulator\EmulatorFileSystemProxy.cs" />
-     <Compile Include="Assets\Scripts\Emulator\EmulatorGameObjectsPoolProxy.cs" />
-     <Compile Include="Assets\Scripts\Emulator\EmulatorModContext.cs" />
-     <Compile Include="Assets\Scripts\Emulator\EmulatorPreferencesProxy.cs" />
-     <Compile Include="Assets\Scripts\Emulator\ModGameObjectsProxy.cs" />
-     <Compile Include="Assets\Scripts\Emulator\ResourcesFolderAssetsProxy.cs" />
+     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+     <None Include="Assets\Scripts\references\Buildron.ModSdk.xml" />
      <None Include="Assets\Fonts\readme.txt" />
      <None Include="Assets\Textures\Detonator\Textures\HeatDistort.shader" />
+     <None Include="Assets\Scripts\references\nunit.framework.xml" />
      <None Include="Assets\LifeBar\readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -71,6 +63,33 @@
  <Reference Include="Buildron.ModSdk">
  <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Buildron.ModSdk.dll</HintPath>
  </Reference>
+ <Reference Include="Buildron.ModSdk.Editor">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Buildron.ModSdk.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Giacomelli.Unity.EditorToolbox">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Giacomelli.Unity.EditorToolbox.dll</HintPath>
+ </Reference>
+ <Reference Include="Giacomelli.Unity.Metadata.Domain">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Giacomelli.Unity.Metadata.Domain.dll</HintPath>
+ </Reference>
+ <Reference Include="Giacomelli.Unity.Metadata.Infrastructure.Bootstrap">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Giacomelli.Unity.Metadata.Infrastructure.Bootstrap.dll</HintPath>
+ </Reference>
+ <Reference Include="Giacomelli.Unity.Metadata.Infrastructure.Framework">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Giacomelli.Unity.Metadata.Infrastructure.Framework.dll</HintPath>
+ </Reference>
+ <Reference Include="Giacomelli.Unity.Metadata.Infrastructure.IO">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Giacomelli.Unity.Metadata.Infrastructure.IO.dll</HintPath>
+ </Reference>
+ <Reference Include="Giacomelli.Unity.Metadata.Infrastructure.Repositories">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Giacomelli.Unity.Metadata.Infrastructure.Repositories.dll</HintPath>
+ </Reference>
+ <Reference Include="Giacomelli.Unity.Metadata.Infrastructure.Unity">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Giacomelli.Unity.Metadata.Infrastructure.Unity.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/nunit.framework.dll</HintPath>
+ </Reference>
  <Reference Include="Skahal.Unity.Scripts">
  <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Skahal.Unity.Scripts.dll</HintPath>
  </Reference>
@@ -79,9 +98,6 @@
  </Reference>
  <Reference Include="Zenject">
  <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Zenject.dll</HintPath>
- </Reference>
- <Reference Include="Buildron.ModSdk.Editor">
- <HintPath>/Users/giacomelli/Dropbox/Skahal/Apps/Buildron-Classic-Mods/src/Buildron.ClassicMods.BuildMod/Assets/Scripts/references/Buildron.ModSdk.Editor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
