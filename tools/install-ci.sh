@@ -6,4 +6,4 @@ echo 'Downloading from Unity package...'
 curl -o Unity.pkg http://netstorage.unity3d.com/unity/a6d8d714de6f/MacEditorInstaller/Unity-5.4.0f3.pkg
 
 echo 'Installing Unity.pkg'
-sudo installer -dumplog -package Unity.pkg -target /
+installer -dumplog -package Unity.pkg -target /
