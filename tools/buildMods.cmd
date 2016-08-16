@@ -1,9 +1,9 @@
 @echo Compiling mods C# class libraries...
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe ..\src\Solution\Buildron.ClassicMods.sln /t:rebuild /p:Configuration=DEV
+@C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe ..\src\Solution\Buildron.ClassicMods.sln /t:rebuild /p:Configuration=DEV
 
-if "%errorlevel%"=="0" GOTO SUCCESS
+@if "%errorlevel%"=="0" GOTO SUCCESS
 
-GOTO FAILURE
+@GOTO FAILURE
 
 :SUCCESS
 @echo Starting async building...

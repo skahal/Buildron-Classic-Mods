@@ -6,10 +6,10 @@ if "%errorlevel%"=="0" GOTO SUCCESS
 GOTO FAILURE
 
 :SUCCESS
-buildModAssets.cmd BuildMod
-buildModAssets.cmd EasterEggMod
-buildModAssets.cmd EnvironmentMod
-buildModAssets.cmd UserMod
+buildModAssets-CI.cmd BuildMod
+buildModAssets-CI.cmd EasterEggMod
+buildModAssets-CI.cmd EnvironmentMod
+buildModAssets-CI.cmd UserMod
 
 :FAILURE
 @echo FAILED.
