@@ -15,8 +15,11 @@ build:
 after_build:
 - cmd: >-     
     .\tools\buildModAssets-CI.cmd BuildMod
+    
     .\tools\buildModAssets-CI.cmd EasterEggMod
+    
     .\tools\buildModAssets-CI.cmd EnvironmentMod
+    
     .\tools\buildModAssets-CI.cmd UserMod
 
 artifacts:
