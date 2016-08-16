@@ -5,6 +5,9 @@ configuration: CI
 install:
 - cmd: choco install Unity
 
+before_build:
+- cmd: nuget restore .\src\Solution\Buildron.ClassicMods.sln
+
 build:
   project: .\src\Solution\Buildron.ClassicMods.sln
   verbosity: minimal
