@@ -1,0 +1,14 @@
+version: 1.0.{build}
+os: Visual Studio 2015
+configuration: Debug
+
+install:
+- cmd: choco install Unity
+  
+after_build:
+- cmd: >-     
+    .\tools\buildMods-CI.cmd
+
+artifacts:
+  - path: .\build
+    name: build.zip
