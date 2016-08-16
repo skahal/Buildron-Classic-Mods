@@ -4,10 +4,17 @@ configuration: Debug
 
 install:
 - cmd: choco install Unity
-  
+
+build:
+  project: .\src\Solution\Buildron.ClassicMods.sln
+  verbosity: minimal
+    
 after_build:
 - cmd: >-     
-    .\tools\buildMods-CI.cmd
+    .\tools\buildModAssets-CI.cmd BuildMod
+    .\tools\buildModAssets-CI.cmd EasterEggMod
+    .\tools\buildModAssets-CI.cmd EnvironmentMod
+    .\tools\buildModAssets-CI.cmd UserMod
 
 artifacts:
   - path: .\build
