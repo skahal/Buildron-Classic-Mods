@@ -2,6 +2,9 @@ version: 1.0.{build}
 os: Visual Studio 2015
 configuration: CI
 
+cache:
+- C:\ProgramData\chocolatey\lib
+            
 install:
 - cmd: choco install Unity
 
@@ -24,5 +27,5 @@ after_build:
 artifacts:
   - path: .\build
     name: build.zip
-  - path: C:\Users\giacomelli\AppData\Local\Unity\Editor\Editor.log
+  - path: C:\Users\appveyor\AppData\Local\Unity\Editor\Editor.log
     name: Editor.log
