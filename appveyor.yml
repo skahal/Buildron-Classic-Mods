@@ -24,3 +24,5 @@ after_build:
 artifacts:
   - path: .\build
     name: build.zip
+  - path: %LOCALAPPDATA%\Unity\Editor\Editor.log
+    name: Editor.log
