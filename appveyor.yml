@@ -2,6 +2,12 @@ version: 1.0.{build}
 os: Visual Studio 2015
 configuration: CI
 
+environment:
+  UNITY_USERNAME:
+    secure: KA8oyGmubI+sMRhdpBIEHan8puDTBjP8isbbvsp2yrQ=
+  UNITY_PASSWORD:
+    secure: dlWlocMuC9JzLPAfxiVnkA==	
+
 cache:
 - C:\ProgramData\chocolatey\lib
             
@@ -16,13 +22,13 @@ build:
     
 after_build:
 - cmd: >-     
-    .\tools\buildModAssets-CI.cmd BuildMod
-#    
-#    .\tools\buildModAssets-CI.cmd EasterEggMod
-#    
-#    .\tools\buildModAssets-CI.cmd EnvironmentMod
-#    
-#    .\tools\buildModAssets-CI.cmd UserMod
+    .\tools\buildModAssets-CI.cmd BuildMod %UNITY_USERNAME% %UNITY_PASSWORD%
+    
+    .\tools\buildModAssets-CI.cmd EasterEggMod %UNITY_USERNAME% %UNITY_PASSWORD%
+    
+    .\tools\buildModAssets-CI.cmd EnvironmentMod %UNITY_USERNAME% %UNITY_PASSWORD%
+    
+    .\tools\buildModAssets-CI.cmd UserMod %UNITY_USERNAME% %UNITY_PASSWORD%
  
 on_failure:
 - cmd: >-      
