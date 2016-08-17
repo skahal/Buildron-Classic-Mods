@@ -27,7 +27,7 @@ after_build:
 - cmd: >-      
      appveyor PushArtifact C:\Users\appveyor\AppData\Local\Unity\Editor\Editor.log
 
-artifacts:
+#artifacts:
 #  - path: .\build
 #    name: build.zip
 #  - path: 
