@@ -10,6 +10,7 @@ before_build:
 
 build:
   project: .\src\Solution\Buildron.ClassicMods.sln
+  verbosity: minimal
     
 after_build:
 - cmd: >-     
