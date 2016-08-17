@@ -23,9 +23,12 @@ build:
 #    .\tools\buildModAssets-CI.cmd EnvironmentMod
 #    
 #    .\tools\buildModAssets-CI.cmd UserMod
+ 
+- cmd: >-      
+     appveyor PushArtifact C:\Users\appveyor\AppData\Local\Unity\Editor\Editor.log
 
 artifacts:
-  - path: .\build
-    name: build.zip
-  - path: C:\Users\appveyor\AppData\Local\Unity\Editor\Editor.log
-    name: Editor.log
+#  - path: .\build
+#    name: build.zip
+#  - path: 
+#    name: Editor.log
