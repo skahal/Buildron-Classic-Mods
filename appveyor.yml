@@ -14,15 +14,15 @@ before_build:
 build:
   project: .\src\Solution\Buildron.ClassicMods.sln
     
-after_build:
-- cmd: >-     
-    .\tools\buildModAssets-CI.cmd BuildMod
-    
-    .\tools\buildModAssets-CI.cmd EasterEggMod
-    
-    .\tools\buildModAssets-CI.cmd EnvironmentMod
-    
-    .\tools\buildModAssets-CI.cmd UserMod
+#after_build:
+#- cmd: >-     
+#    .\tools\buildModAssets-CI.cmd BuildMod
+#    
+#    .\tools\buildModAssets-CI.cmd EasterEggMod
+#    
+#    .\tools\buildModAssets-CI.cmd EnvironmentMod
+#    
+#    .\tools\buildModAssets-CI.cmd UserMod
 
 artifacts:
   - path: .\build
