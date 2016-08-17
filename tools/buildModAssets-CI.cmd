@@ -1,2 +1,2 @@
 @echo Building %1 mod assets...
-"C:\Program Files\Unity\Editor\Unity.exe" -projectPath src\Buildron.ClassicMods.%1 -batchmode -executeMethod ModBuilder.BuildFromCommandLine %cd%\build StandaloneWindows
+"C:\Program Files\Unity\Editor\Unity.exe" -projectPath  C:\projects\buildron-classic-mods\src\Buildron.ClassicMods.%1 -batchmode -executeMethod ModBuilder.BuildFromCommandLine  C:\projects\buildron-classic-mods\build StandaloneWindows
