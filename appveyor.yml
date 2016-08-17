@@ -15,8 +15,8 @@ build:
   project: .\src\Solution\Buildron.ClassicMods.sln
     
 after_build:
-#- cmd: >-     
-#    .\tools\buildModAssets-CI.cmd BuildMod
+- cmd: >-     
+    .\tools\buildModAssets-CI.cmd BuildMod
 #    
 #    .\tools\buildModAssets-CI.cmd EasterEggMod
 #    
@@ -24,6 +24,7 @@ after_build:
 #    
 #    .\tools\buildModAssets-CI.cmd UserMod
  
+on_failure:
 - cmd: >-      
      appveyor PushArtifact C:\Users\appveyor\AppData\Local\Unity\Editor\Editor.log
 
