@@ -23,7 +23,9 @@ build:
   project: .\src\Solution\Buildron.ClassicMods.sln
     
 after_build:
-- cmd: >-
+- cmd: >-     
+    "C:\Program Files\Unity\Editor\Unity.exe" -quit -batchmode -serial %UNITY_SERIAL% -username "UNITY_USERNAME" -password "UNITY_PASSWORD" 
+ 
     .\tools\buildModAssets-CI.cmd BuildMod %UNITY_USERNAME% %UNITY_PASSWORD% %UNITY_SERIAL%
 #    
 #    .\tools\buildModAssets-CI.cmd EasterEggMod %UNITY_USERNAME% %UNITY_PASSWORD% %UNITY_SERIAL%
