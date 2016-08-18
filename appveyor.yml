@@ -11,8 +11,8 @@ environment:
     secure: umfXhelbnLs/iVcdxIU3yeTcqcJhLdTJOp+ebLjF/7I=
 
 cache:
-- C:\ProgramData\chocolatey\lib
-- C:\Program Files\Unity\
+#- C:\ProgramData\chocolatey\lib
+- C:\Program Files\Unity
             
 install:
 - cmd: choco install Unity
