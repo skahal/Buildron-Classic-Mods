@@ -11,7 +11,7 @@ environment:
     secure: umfXhelbnLs/iVcdxIU3yeTcqcJhLdTJOp+ebLjF/7I=
 
 cache:
-- C:\ProgramData\chocolatey\lib
+#- C:\ProgramData\chocolatey\lib
 - C:\Program Files\Unity\
             
 install:
