@@ -25,8 +25,6 @@ build:
     
 after_build:
 - cmd: >-     
-    ipconfig /release
-    
     .\tools\buildModAssets-CI.cmd BuildMod %UNITY_USERNAME% %UNITY_PASSWORD%
 #    
 #    .\tools\buildModAssets-CI.cmd EasterEggMod %UNITY_USERNAME% %UNITY_PASSWORD% %UNITY_SERIAL%
