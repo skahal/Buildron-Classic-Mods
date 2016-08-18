@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: 0.0.{build}
 os: Visual Studio 2015
 configuration: CI
 
@@ -10,8 +10,9 @@ environment:
   UNITY_SERIAL:
     secure: umfXhelbnLs/iVcdxIU3yeTcqcJhLdTJOp+ebLjF/7I=
 
-cache:
-- C:\ProgramData\chocolatey\lib
+#cache:
+#- C:\ProgramData\chocolatey\lib
+#- C:\Program Files\Unity\
             
 install:
 - cmd: choco install Unity
