@@ -15,7 +15,7 @@ cache:
 #- C:\Program Files\Unity\
             
 install:
-- cmd: choco install Unity -version
+- cmd: choco install Unity
 
 before_build:
 - cmd: nuget restore .\src\Solution\Buildron.ClassicMods.sln
