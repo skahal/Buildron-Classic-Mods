@@ -156,6 +156,24 @@
              <param name="searchPattern">The search pattern. Example: *.png</param>
              <param name="recursive">If should search in subdirectories recursively.</param>
             </member>
+        <member name="T:Buildron.Domain.Mods.IRemoteControlProxy">
+             <summary>
+             Define an interface to a remote control proxy.
+             </summary>
+            </member>
+        <member name="P:Buildron.Domain.Mods.IRemoteControlProxy.Current">
+             <summary>
+             Gets the current.
+             </summary>
+             <value>The current.</value>
+            </member>
+        <member name="M:Buildron.Domain.Mods.IRemoteControlProxy.ReceiveCommand(Buildron.Domain.RemoteControls.IRemoteControlCommand)">
+             <summary>
+             Receives the command.
+             </summary>
+             <returns><c>true</c>, if command was received, <c>false</c> otherwise.</returns>
+             <param name="command">The command.</param>
+            </member>
         <member name="T:Buildron.Domain.Mods.PreferenceKind">
              <summary>
              The kind of preference that a mod can expose to an user.
@@ -863,6 +881,12 @@
              Gets the preferences.
              </summary>
              <value>The preferences.</value>
+            </member>
+        <member name="P:Buildron.Domain.Mods.IModContext.RemoteControl">
+             <summary>
+             Gets the remote control.
+             </summary>
+             <value>The remote control.</value>
             </member>
         <member name="T:Buildron.Domain.RemoteControls.IRemoteControl">
              <summary>

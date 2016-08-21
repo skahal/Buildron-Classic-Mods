@@ -85,97 +85,57 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &274141073
+--- !u!1 &787553644
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 274141075}
-  - 114: {fileID: 274141074}
+  - 4: {fileID: 787553646}
+  - 114: {fileID: 787553645}
   m_Layer: 0
-  m_Name: Emulator
+  m_Name: Simulator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &274141074
+--- !u!114 &787553645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 274141073}
+  m_GameObject: {fileID: 787553644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -780241585, guid: cc3037b88444f2943a4fadce74acc5a7, type: 3}
+  m_Script: {fileID: -1569513865, guid: cc3037b88444f2943a4fadce74acc5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &274141075
+--- !u!4 &787553646
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 274141073}
+  m_GameObject: {fileID: 787553644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 974213580}
-  - {fileID: 695242908}
+  - {fileID: 1046288176}
+  - {fileID: 1204366053}
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!1 &695242907
+--- !u!1 &1046288175
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 695242908}
-  - 114: {fileID: 695242909}
-  m_Layer: 0
-  m_Name: PoolsManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &695242908
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 695242907}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 274141075}
-  m_RootOrder: 1
---- !u!114 &695242909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 695242907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 270000476, guid: d29592b002a982b43a0f385a31b5349b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &974213579
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 974213580}
-  - 114: {fileID: 974213581}
+  - 4: {fileID: 1046288176}
+  - 114: {fileID: 1046288177}
   m_Layer: 0
   m_Name: UserConfig
   m_TagString: Untagged
@@ -183,31 +143,71 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &974213580
+--- !u!4 &1046288176
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 974213579}
+  m_GameObject: {fileID: 1046288175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 274141075}
+  m_Father: {fileID: 787553646}
   m_RootOrder: 0
---- !u!114 &974213581
+--- !u!114 &1046288177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 974213579}
+  m_GameObject: {fileID: 1046288175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1290884353, guid: cc3037b88444f2943a4fadce74acc5a7, type: 3}
+  m_Script: {fileID: -1966383471, guid: cc3037b88444f2943a4fadce74acc5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UserPhotos: []
+--- !u!1 &1204366052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1204366053}
+  - 114: {fileID: 1204366054}
+  m_Layer: 0
+  m_Name: PoolsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1204366053
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1204366052}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 787553646}
+  m_RootOrder: 1
+--- !u!114 &1204366054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1204366052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 270000476, guid: d29592b002a982b43a0f385a31b5349b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1261647917
 GameObject:
   m_ObjectHideFlags: 0
