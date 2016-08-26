@@ -1,0 +1,1 @@
+./buildMods.sh StandaloneLinux

@@ -1,12 +1,14 @@
-echo Compiling mods C# class libraries...
-xbuild ../src/Solution/Buildron.ClassicMods.sln /t:rebuild /p:Configuration=DEV
+echo ================[ Building mods for $1
 
-echo Starting async building...
-echo Please wait for all mods build done or all Unity instances be closed.
+echo ================[ Compiling mods C# class libraries...
+xbuild ../src/Solution/Buildron.ClassicMods.sln /verbosity:quiet /t:rebuild /p:Configuration=DEV >/dev/null
 
-./buildModAssets.sh BuildMod &
-./buildModAssets.sh CameraMod &
-./buildModAssets.sh EasterEggMod &
-./buildModAssets.sh EnvironmentMod &
-./buildModAssets.sh SoundMod &
-./buildModAssets.sh UserMod &
+echo ================[ Starting mods assets building...
+./buildModAssets.sh BuildMod $1
+./buildModAssets.sh CameraMod $1
+./buildModAssets.sh EasterEggMod $1
+./buildModAssets.sh EnvironmentMod $1
+./buildModAssets.sh SoundMod $1
+./buildModAssets.sh UserMod $1
+
+echo ================[  Build mods done.
