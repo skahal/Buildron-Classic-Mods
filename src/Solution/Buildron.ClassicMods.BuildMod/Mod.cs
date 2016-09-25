@@ -9,19 +9,19 @@ using Buildron.Domain.RemoteControls;
 
 namespace Buildron.ClassicMods.BuildMod
 {
-	public class Mod : IMod
+    /// <summary>
+    /// The BuildMod.
+    /// </summary>
+    public class Mod : IMod
 	{
-		public Mod ()
-		{
-		}
-
-		public static IModContext Context { get; private set; }
+        #region Properties       
+        public static IModContext Context { get; private set; }
 
 		public static SceneContext DI { get; private set; }
+        #endregion
 
-		#region Methods
-
-		public void Initialize (IModContext context)
+        #region Methods
+        public void Initialize (IModContext context)
         {
             Context = context;
             RegisterPreferences();
@@ -30,9 +30,10 @@ namespace Buildron.ClassicMods.BuildMod
 
         private void RegisterPreferences()
         {
-            Context.Preferences.Register(
-                new Preference("BuildsTotemsNumber", "Totems number", PreferenceKind.Int, 2),
-				new Preference("HistoryTotemEnabled", "History enabled", PreferenceKind.Bool, true));
+			Context.Preferences.Register(
+				new Preference("BuildsTotemsNumber", "Totems number", PreferenceKind.Int, 2),
+				new Preference("HistoryTotemEnabled", "History enabled", PreferenceKind.Bool, true),
+				new Preference("BranchNameEnabled", "Show branch name", PreferenceKind.Bool, false));
         }
 
         private void CreateControllers()

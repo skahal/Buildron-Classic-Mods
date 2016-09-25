@@ -99,10 +99,12 @@ namespace Buildron.ClassicMods.BuildMod.Controllers
 		{        
 			IsVisible = true;
 		
-			if (m_projectLabel == null) {
-				ProjectText = Model.Configuration.Project.Name;
-			}
-		
+			ProjectText = Model.Configuration.Project.Name;
+	
+			var branchText = transform.FindChild("Canvas/BranchLabel").GetComponent<Text>();
+			var branchNameEnabled = Mod.Context.Preferences.GetValue<bool>("BranchNameEnabled");
+			branchText.text = branchNameEnabled ? Model.Branch.Name : String.Empty;
+
 			m_configurationLabel = transform.FindChild ("Canvas/ConfigurationLabel").GetComponent<Text> ();
 			m_configurationLabel.text = Model.Configuration.Name;
 		
